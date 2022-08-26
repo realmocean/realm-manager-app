@@ -1,0 +1,20 @@
+[
+    {
+        "account ": {
+            "account_email ": "admin@bpmgenesis.com ",
+            "account_id ": "5246f419-1da5-412c-a088-180bde2b32fd ",
+            "account_name ": "admin ",
+            "account_password ": "21232f297a57a5a743894a0e4a801fc3 ",
+            "created_at ": "2022-07-15T10:15:15 ",
+            "is_active ": true,
+            "is_realm_admin ": true,
+            "last_login ": "2022-07-23T14:13:06 ",
+            "meta_data ": null,
+            "tags ": null,
+            "updated_at ": "2022-07-15T10:15:16 "
+        },
+        "account_id ": "5246f419-1da5-412c-a088-180bde2b32fd ",
+        "is_tenant_admin ": true,
+        "tenant_id ": "06d0e454-da72-4de6-b836-ea92c07d352f "
+    }
+]
