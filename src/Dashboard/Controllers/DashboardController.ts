@@ -1,5 +1,5 @@
 import { AreaSerie, ChartView } from '@tuval/components-charts';
-import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown } from '@tuval/forms';
+import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown,useApplication } from '@tuval/forms';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
 import { Views } from '../../Views/Views';
 import { RealmBrokerClient } from '../../Services/RealmBrokerClient';
@@ -76,6 +76,7 @@ export class DashboardController extends UIController {
     }
 
     protected BindRouterParams() {
+        console.log(this.Application);
         RealmBrokerClient.GetRealmStatistics().then(result => {
             //console.log(result);
         })
@@ -110,7 +111,7 @@ export class DashboardController extends UIController {
         this.showingItems = [...this.items.filter((item: any) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1)];
     }
     public LoadView() {
-
+        console.log(useApplication());
         const options: UIChartOptions = {
             colors: ['#b40404', '#f0bc6c'],
             legend: {
