@@ -347,17 +347,24 @@ export namespace Views {
     )
 
     export const RightSidePage = ({ title, content }: { title: string, content: UIView }) => (
-        VStack({ alignment: cTopLeading })(
+        VStack(
             HStack({ alignment: cLeading })(
-                Typography({ variant: "h2" })(
+                HStack(
+                    Icon('\\e5e0').size(20)
+                ).padding(5),
+                Typography({ variant: "subtitle1" })(
                     title
                 )
-                /*   Text(title)
-                      .foregroundColor('#444')
-                      .fontFamily(fontFamily).fontSize('2.4rem').fontWeight('300'), */
-            ).height().marginBottom('24px'),
-            content
-        ).padding(20).borderTop(`solid 1px ${theme.surfaceborder}`)
+            )
+                .height(50)
+                .background('rgb(248,243,250)'),
+            VStack({ alignment: cTopLeading })(
+                content
+            )
+                .padding(20)
+                .borderTop(`solid 1px ${theme.surfaceborder}`)
+                .background(Color.white)
+        )
     )
 
     export const AcceptRouteButton = ({ label, link }: { label: string, link: string }) => (

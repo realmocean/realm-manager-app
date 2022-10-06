@@ -1,4 +1,4 @@
-import { ToolbarEx } from '@tuval/components/navigations';
+
 import { ModuleLoader } from '@tuval/core';
 import { TApplication, TForm } from '@tuval/forms';
 import { MainForm } from './MainForm';
@@ -20,8 +20,7 @@ function App(manifest: any) {
 
 @App(manifest)
 export class IconLibrary extends TApplication {
-    private m_Toolbar: ToolbarEx;
-    private m_tbiLabel: any;
+   
     public InitComponents() {
 
 

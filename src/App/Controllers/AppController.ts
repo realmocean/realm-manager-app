@@ -1,45 +1,11 @@
 import {
-    CornerRadiusTypes,
-    cTopLeading,
-    ForEach,
-    HStack,
-    Icon,
-    IconLibrary,
-    IconType,
-    ScrollView,
-    Text,
-    UIController,
+    Color, Context, HStack, State, TForm, UIController,
     UIScene,
-    VStack,
-    cVertical,
-    PositionTypes,
-    Color,
-    Cache,
-    UIButton,
-    State,
-    Spacer,
-    UIImage,
-    cTop,
-    ZStack,
-    bindState,
-    UIRoutes,
-    UIRoute
+    VStack
 } from '@tuval/forms';
-import { TForm, cLeading, UIContextMenu, Context, UINavigate, bindNavigate, NavigateFunction, Typography } from '@tuval/forms';
-import { is } from '@tuval/core';
-import { CodeEditorView } from '@tuval/components/codeeditor';
-import { model } from '../Models/menuModel';
-import { menuItem } from '../Views/mainMenu';
-import { TenantsController } from '../../Tenants/Controllers/TenantsController';
-import { LeftSideMenuView } from '../Views/LeftSideMenu';
-import { AccountsController } from '../../Accounts/Controllers/AccountsController';
-import { AppsController } from '../../Apps/Controllers/AppsController';
-import { DashboardController } from '../../Dashboard/Controllers/DashboardController';
-import { AddEditTenantController } from '../../Tenants/Controllers/AddEditTenantController';
 import { RealmBrokerClient } from '../../Services/RealmBrokerClient';
-import { Services } from '../../Services/Services';
-import { Routes } from '../Views/Routes';
 import { theme } from '../../theme/theme';
+import { Routes } from '../Views/Routes';
 
 const manifest = require('../../manifest');
 
@@ -93,10 +59,10 @@ export class AppController extends UIController {
                 HStack(
                     VStack(
                         Routes()
-                    ).background(Color.white)
+                    )
                 )
             )
-        ).background(Color.white)
+        )
 
     }
 }

@@ -1,6 +1,7 @@
-import { VStack, cTopLeading, Icon, IconLibrary, Text, ForEach, HStack, cLeading, bindState, Color, UIRouteLink } from '@tuval/forms';
+import { VStack, cTopLeading, Icon, IconLibrary, Text, ForEach, HStack, cLeading, bindState, Color, UIRouteLink, CornerRadiusTypes } from '@tuval/forms';
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif';
+const icon = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAD2ElEQVRoQ91ZWU8UQRDev+ODzyYmPpiYGDU8+KLREEyIiQai8eABJESIIBoBQQJBIgIKuiCHohIPhABeaESQYEARlUsQuY/lkC37W5xxe6d7tmfZZVm/5NuprtnurumprumuthHRmhkWkURZ12qoqvYlRcflMtW/e9nX71PZvSaKTy2mLbtPcfd8pVCpwriUImrv7CXHwiIrrmJxaZnOXbZD1P/3rLkNZR0zsw56/a6LYpIKUOTaVKVQacaSygaanJ5johEqRrtjfHKGCu1PIXJ9eKNQKSJGdmR0kolyWDVaAwYBbsTA9SmjUOnOzdujqPFVBzmdTlY0h69GA2i/pbWbtobFoMjZ4EmhUuPeyGT6/HWIiWpYi9EaBofHKOJYOkTOFncKlSAqogEr8IfRwMTULEXF8lHInULlnvBE6h8aZaIatIiQnGknuBOD3taOffGUU/jAEGm8wcxwgwKd9A2qGYyJmZp9B6KhHRkx4UbHppjoHRg4DCAD1wZXAOua2rxOOoyY/W4TREN9VaI+3Mkb6p+348LV5QoZV6tpafk3E+XA6Hp+9XxlbEqhK1abAQ/m+TZ1AW4x8OMXE+XA60JEYdDrrZUqE773+zAXCvXK5TXNpm6hEop8pTfDV1aclHejFqLr/64fOPvwzwkohZidc9CJhHyIXGf+5JnzxTTvkEeXrp4B2rTtKMRVo/EUeBoRoC+taoBo6MjfNHvbeCDMAYZVo993fEFBiE+9g4bYGyh6m1c1j1twsdn2H7lAYxPTLqUnEEku5lRAFHYSCJq9dSwp4CK2lKwyabz81j+itIDxJ80GEXrct2FXIcPDure4CBsPJFs/9LCLEQuLS5SYVipf0Cwz10jPq4YobDiQlA0kJml+ySOydXb3/VXxwCLo8OksiMKGA0m4QFFZHd2sqDcw8mSm3OjpmXk6dDwDorDhYFJq9NDIOO08kABRWDGY/L9GOpg+Db8V+TPo8umQjB4hGac32hcxPDpNujHQv4gbbe1xu7pRutLT1x5MDr1VHn5CYT2NzTQyrwwbZ+dy/kq5aV7EsHMBg7lHRFIGyRkZ8LYNe0RQZTceCMPXtBsHVfIeiDT+chWVvAfsgV0Mej2uEVAlw4S4vl4ZphdvPuLC1eUKoNVc3qXcSoiGdmQMSC4PtJo1nZtfkGZN0VbBrSeEhZnKyGqwlDXVqDJBPAGj/JGfxnGGluMQUajUGIyTAJUEp1DpzvU8c4EL7Tp4FkXOBk8KlSKG1OmWJ/15jogJjFNeq8tfoVKFvp7Y4v+oZ/XYw51CpVWqnI1jQYRvgPs930i2PwqX/heU4uCTAAAAAElFTkSuQmCC';
 
 const menuModel = [
     {
@@ -8,6 +9,7 @@ const menuModel = [
         subItems: [
             {
                 name: 'Dashboard',
+                icon: IconLibrary.Dashboard,
                 link: '/app(realmmanager)/dashboard'
 
             }
@@ -19,84 +21,91 @@ const menuModel = [
 
             {
                 name: 'Tenants',
+                icon: '\\ea40',
                 link: '/app(realmmanager)/tenant/list'
             },
             {
                 name: 'Accounts',
-
+                icon: '\\e853',
                 link: '/app(realmmanager)/account/list'
             },
-          /*   {
-                name: 'Account Pools',
-
-            },
-            {
-                name: 'Licenses',
-
-            },
-            {
-                name: 'Services',
-
-            } */
+            /*   {
+                  name: 'Account Pools',
+  
+              },
+              {
+                  name: 'Licenses',
+  
+              },
+              {
+                  name: 'Services',
+  
+              } */
         ]
     },
-   /*  {
-        title: 'Other',
-        subItems: [
-            {
-                name: 'Notifications'
-            },
-            {
-                name: 'Settings'
-            },
-            {
-                name: 'Billing'
-            },
-            {
-                name: 'Ensemble'
-            }
-        ]
-    }, */
+    /*  {
+         title: 'Other',
+         subItems: [
+             {
+                 name: 'Notifications'
+             },
+             {
+                 name: 'Settings'
+             },
+             {
+                 name: 'Billing'
+             },
+             {
+                 name: 'Ensemble'
+             }
+         ]
+     }, */
 
 ]
 
 export const LeftSideMenuView = (realmName: string, selectedItem: string) => (
     VStack({ alignment: cTopLeading })(
-      /*   HStack({ alignment: cTopLeading })(
-            Icon((IconLibrary as any).DonutLarge).size(30).paddingLeft('15px'),
-            Text(realmName).fontWeight('600')
-                .fontSize('0.8rem').lineHeight('0.8rem')
-                .kerning('.06rem').fontFamily(fontFamily)
-                .padding('25px 20px 15px')
-                .textTransform('uppercase'),
-        ).height(), */
+           HStack({ alignment: cLeading, spacing:10 })(
+              Icon((IconLibrary as any).DonutLarge).size(30),
+              Text('Realm Manager').fontWeight('600')
+                  .fontSize('0.8rem').lineHeight('0.8rem')
+                  .kerning('.06rem').fontFamily(fontFamily)
+                  .textTransform('uppercase'),
+          ).height().padding(), 
         ...ForEach(menuModel)(menu =>
             VStack({ alignment: cTopLeading })(
                 Text(menu.title).fontWeight('600')
-                    .fontSize('0.8rem').lineHeight('0.8rem')
+                    .fontSize('0.75rem').lineHeight('0.8rem')
                     .kerning('.06rem').fontFamily(fontFamily)
                     .padding('25px 10px 15px')
-                    .textTransform('uppercase'),
-                ...ForEach(menu.subItems)((subItem: any) =>
+                    .textTransform('uppercase')
+                    .foregroundColor('rgb(166,161,167)'),
+                ...ForEach(menu.subItems as any)((subItem: any) =>
+                HStack(
                     UIRouteLink(subItem.link ?? '')(
-                        HStack({ alignment: cLeading })(
-                            Text(subItem.name).fontFamily(fontFamily)
-                                .padding('10px 20px').fontSize(16)
-                                .lineHeight('1rem').fontWeight('400')
-                                .height(36)
+                        HStack({ alignment: cLeading, spacing: 10 })(
+                            Icon(subItem.icon).size(25).foregroundColor('#0994F5'),
+                            Text(subItem.name).fontSize('0.9rem').lineHeight('0.8rem')
                         )
-                            .background(selectedItem == subItem.name ? 'rgba(250,250,250,.2)' : '')
-                            .fontWeight(selectedItem == subItem.name ? '700' : '400')
+                           
+                            .cornerRadius(CornerRadiusTypes.Rounded)
+                            .height()
+                            .padding(5)
+                            .backgroundColor(selectedItem === subItem.name ? '#CECECE' : '')
+                           // .backgroundColor({ hover: '#CECECE66' })
+                            //.foregroundColor({ hover: 'white' })
                             .cursor('pointer')
-                    ).width('100%')
+                    ).width('90%')
+                    ).height()
 
                 )
             ).height()
                 .borderBottom('1px solid rgba(180,188,199,.32)')
                 .paddingBottom('20px')
         )
-    ).width(220).minWidth('220px').maxWidth('220px')
-        .background('#031b4d')
+    )
+        .background('#E8E8E8')
+        .width(220).minWidth('220px').maxWidth('220px')
+        //.background('#031b4d')
         .fontSize(16)
-        .foregroundColor(Color.white)
 )

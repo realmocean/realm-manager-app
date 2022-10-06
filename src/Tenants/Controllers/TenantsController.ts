@@ -16,7 +16,7 @@ import {
 import { RealmBrokerClient, IGetTenantsResponce } from '../../Services/RealmBrokerClient';
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Color, UIRouteLink, UIRouteOutlet } from '@tuval/forms';
-import { ActionButton } from '../../Views/ActionButton';
+
 import { AddEditTenantController } from './AddEditTenantController';
 import { Services } from '../../Services/Services';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
@@ -59,7 +59,7 @@ export class TenantsController extends UIController {
             return (
                 UIScene(
                     HStack({ alignment: cTopLeading })(
-                        LeftSideMenuView('', 'Tenants'),
+                        
                         UIRouteOutlet().width('100%').height('100%')
                     )
                 )

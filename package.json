@@ -26,6 +26,7 @@
         "buildweb": "webpack --config webpack.web.config.js",
         "buildwebprod": "webpack --config webpack.web.prod.config.js",
         "build": "node shell.js",
+        "watch": "node watch.js",        
         "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
         "prebuild": "rimraf dist",
         "b": "tsc --module commonjs && rollup -c rollup.config.ts",
@@ -101,6 +102,14 @@
         ]
     },
     "devDependencies": {
+        "@realmocean/common": "^1.0.77",
+        "@realmocean/dropdowns": "^0.0.12",
+        "@realmocean/inputs": "^0.0.5",
+        "@tuval/cg": "^0.0.16",
+        "@tuval/core": "^0.0.92",
+        "@tuval/forms": "^0.0.42",
+        "@tuval/graphics": "^0.0.10",
+        "chokidar": "^3.5.3",
         "css-loader": "^6.2.0",
         "declaration-bundler-webpack-plugin": "^1.0.3",
         "dts-bundle": "^0.7.3",

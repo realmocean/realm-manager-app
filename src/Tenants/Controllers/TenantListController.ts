@@ -16,10 +16,10 @@ import {
 import { RealmBrokerClient, IGetTenantsResponce } from '../../Services/RealmBrokerClient';
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Color, UIRouteLink } from '@tuval/forms';
-import { ActionButton } from '../../Views/ActionButton';
 import { AddEditTenantController } from './AddEditTenantController';
 import { Services } from '../../Services/Services';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
+import { Views } from '../../Views/Views';
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
 
@@ -65,29 +65,36 @@ export class TenantListController extends UIController {
         return ({ AppController_ContextAction_SetController }) => {
             return (
                 UIScene(
+
                     HStack({ alignment: cTopLeading })(
-                        this.isLoading() ?
-                            VStack(Spinner()) :
-                            VStack({ alignment: cTopLeading, spacing: 10 })(
-                                HStack({ alignment: cLeading })(
-                                    Text('Tenants')
-                                        .foregroundColor('#444')
-                                        .fontFamily(fontFamily).fontSize('2.4rem').fontWeight('300')
-                                ).height(),
-                                HStack(
-                                    // MARK: Search Box
-                                    HStack(
-                                        TextField().placeholder('Search by Tenant Name')
-                                            .onTextChange((value) => this.Search_Action(value))
-                                    ).border('solid 1px #dfdfdf').padding(10).width(300).cornerRadius(5),
-                                    Spacer(),
-                                    UIRouteLink('/app(realmmanager)/tenant/add')(
-                                        ActionButton('New Tenant')
-                                    )
-                                ).height().marginBottom('24px'),
-                                TenantsGrid(this.showingTenants)
-                            ).padding(20)
+                        LeftSideMenuView('', 'Tenants'),
+                        Views.RightSidePage({
+                            title: 'Tenants',
+                            content: (
+                                HStack({ alignment: cTopLeading })(
+                                    this.isLoading() ?
+                                        VStack(Spinner()) :
+                                        VStack({ alignment: cTopLeading, spacing: 10 })(
+                                            HStack(
+                                                // MARK: Search Box
+                                                HStack(
+                                                    TextField().placeholder('Search by Tenant Name')
+                                                        .onTextChange((value) => this.Search_Action(value))
+                                                ).border('solid 1px #dfdfdf').padding(10).width(300).cornerRadius(5),
+                                                Spacer(),
+                                                UIRouteLink('/app(realmmanager)/tenant/add')(
+                                                    Text('New Tenant')
+                                                )
+                                            ).height().marginBottom('24px'),
+                                            TenantsGrid(this.showingTenants)
+                                        )
+                                )
+                            )
+                        })
                     )
+
+
+
                 )
 
             )

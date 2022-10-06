@@ -1,9 +1,8 @@
-import { AreaSerie, ChartView } from '@tuval/components-charts';
+
 import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown,useApplication } from '@tuval/forms';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
 import { Views } from '../../Views/Views';
 import { RealmBrokerClient } from '../../Services/RealmBrokerClient';
-import { FuButton, MyButton } from '@tuval/fusion';
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
 

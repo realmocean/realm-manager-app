@@ -14,10 +14,11 @@ import {
 } from '@tuval/forms';
 
 import { RealmBrokerClient } from '../../Services/RealmBrokerClient';
-import { ActionButton } from '../../Views/ActionButton';
+
 import { ITableViewColumn, Views } from '../../Views/Views';
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Icon } from '@tuval/forms';
+import { ActionButton } from '../../Views/ActionButton';
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
 
