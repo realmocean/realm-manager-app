@@ -1,3 +1,4 @@
+import { UITextBoxView } from '@realmocean/inputs';
 import { is } from '@tuval/core';
 import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography } from '@tuval/forms';
 import {
@@ -348,23 +349,40 @@ export namespace Views {
 
     export const RightSidePage = ({ title, content }: { title: string, content: UIView }) => (
         VStack(
-            HStack({ alignment: cLeading })(
-                HStack(
-                    Icon('\\e5e0').size(20)
-                ).padding(5),
+            HStack(
+                /*  HStack(
+                     Icon('\\e5e0').size(20)
+                 ).padding(5), */
+
                 Typography({ variant: "subtitle1" })(
                     title
                 )
             )
                 .height(50)
                 .background('rgb(248,243,250)'),
-            VStack({ alignment: cTopLeading })(
+            VStack({ alignment: cTop })(
                 content
             )
                 .padding(20)
                 .borderTop(`solid 1px ${theme.surfaceborder}`)
                 .background(Color.white)
         )
+    )
+
+    export const FormSection = ({ title, content }: { title: string, content: UIView }) => (
+        VStack({ alignment: cTop})(
+            HStack({ alignment: cLeading })(
+                Typography({ variant: 'subtitle1' })('General Info')
+            ).height().paddingBottom('10px'),
+            content
+        )
+            .cornerRadius(10)
+            .padding(30)
+            .foregroundColor('#676767')
+            .height()
+            .marginTop('10px')
+            .background('rgb(250,250,250)')
+
     )
 
     export const AcceptRouteButton = ({ label, link }: { label: string, link: string }) => (

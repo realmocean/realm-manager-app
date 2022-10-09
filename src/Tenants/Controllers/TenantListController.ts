@@ -13,6 +13,8 @@ import {
     VStack,
 } from '@tuval/forms';
 
+import { UIButtonView } from '@realmocean/buttons'
+
 import { RealmBrokerClient, IGetTenantsResponce } from '../../Services/RealmBrokerClient';
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Color, UIRouteLink } from '@tuval/forms';
@@ -83,12 +85,12 @@ export class TenantListController extends UIController {
                                                 ).border('solid 1px #dfdfdf').padding(10).width(300).cornerRadius(5),
                                                 Spacer(),
                                                 UIRouteLink('/app(realmmanager)/tenant/add')(
-                                                    Text('New Tenant')
+                                                    UIButtonView().text('New Tenant')
                                                 )
                                             ).height().marginBottom('24px'),
                                             TenantsGrid(this.showingTenants)
                                         )
-                                )
+                                ).background(Color.white)
                             )
                         })
                     )
