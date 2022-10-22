@@ -2,6 +2,7 @@ import {
     cLeading,
     cTopLeading,
     HStack,
+    IconLibrary,
     Spacer,
     Spinner,
     State,
@@ -21,17 +22,63 @@ import { Color, UIRouteLink } from '@tuval/forms';
 import { AddEditTenantController } from './AddEditTenantController';
 import { Services } from '../../Services/Services';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
-import { Views } from '../../Views/Views';
+import { ITableViewColumn, Views } from '../../Views/Views';
+import { ITenant, useOrgProvider } from '@realmocean/common';
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
+
+const columns: ITableViewColumn[] = [
+    {
+        title: 'Tenant Name',
+        key: "Name"
+    },
+    {
+        title: 'Account Count',
+        key: "AccountCount"
+    },
+
+    {
+        title: '',
+        view: (tenant: any) => (
+            HStack({ alignment: cLeading })(
+                Views.ActionContextMenu([
+                    {
+                        title: 'Accounts',
+                        icon: IconLibrary.AccountCircle as any,
+                        tooltip: 'Edit',
+                        iconColor: '#505A64',
+                        link: `/app(realmmanager)/tenant/${tenant.Id}/accounts`,
+                        linkState: { position: tenant }
+                    },
+                    {
+                        title: 'Edit',
+                        icon: '\\d202',
+                        tooltip: 'Edit',
+                        iconColor: '#505A64',
+                        link: `/app(tenantmanager)/employee/edit/${tenant.Id}`,
+                        linkState: { position: tenant }
+                    },
+                    {
+                        title: 'Delete',
+                        icon: '\\d390',
+                        tooltip: 'Delete',
+                        iconColor: Color.red400 as any,
+                        link: `/app(tenantmanager)/employee/delete/${tenant.Id}`,
+                        linkState: { position: tenant }
+                    }
+                ])
+            )
+        )
+    }
+]
 
 export class TenantListController extends UIController {
 
     @State()
-    private tenants: IGetTenantsResponce;
+    private tenants: ITenant[];
 
     @State()
-    private showingTenants: IGetTenantsResponce;
+    private showingTenants:  ITenant[];
 
     @State()
     private texts: string;
@@ -46,8 +93,12 @@ export class TenantListController extends UIController {
 
     public BindRouterParams() {
         this.tenants = null;
+
+        const orgService = useOrgProvider();
+
         //  if (this.tenants == null) {
-        RealmBrokerClient.GetTenants().then(tenants => {
+        orgService.getTenants().then(tenants => {
+         
             this.showingTenants = this.tenants = tenants;
         })
 
@@ -59,7 +110,7 @@ export class TenantListController extends UIController {
     }
 
     private Search_Action(value: string): void {
-        this.showingTenants = this.tenants.filter((tenant) => tenant.tenant_name.toLowerCase().indexOf(value.toLowerCase()) > -1);
+        this.showingTenants = this.tenants.filter((tenant: ITenant) => tenant.Name.toLowerCase().indexOf(value.toLowerCase()) > -1);
     }
 
 
@@ -67,7 +118,6 @@ export class TenantListController extends UIController {
         return ({ AppController_ContextAction_SetController }) => {
             return (
                 UIScene(
-
                     HStack({ alignment: cTopLeading })(
                         LeftSideMenuView('', 'Tenants'),
                         Views.RightSidePage({
@@ -88,7 +138,7 @@ export class TenantListController extends UIController {
                                                     UIButtonView().text('New Tenant')
                                                 )
                                             ).height().marginBottom('24px'),
-                                            TenantsGrid(this.showingTenants)
+                                            Views.TableView(columns, this.showingTenants)
                                         )
                                 ).background(Color.white)
                             )

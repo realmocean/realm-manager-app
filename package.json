@@ -103,9 +103,9 @@
     },
     "devDependencies": {
         "@realmocean/buttons": "^0.0.3",
-        "@realmocean/common": "^1.0.77",
-        "@realmocean/dropdowns": "^0.0.12",
-        "@realmocean/inputs": "^0.0.5",
+        "@realmocean/common": "^1.0.114",
+        "@realmocean/dropdowns": "^0.0.17",
+        "@realmocean/inputs": "^0.0.6",
         "@tuval/cg": "^0.0.16",
         "@tuval/core": "^0.0.92",
         "@tuval/forms": "^0.0.42",

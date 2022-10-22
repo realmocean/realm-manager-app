@@ -1,6 +1,6 @@
 import { UITextBoxView } from '@realmocean/inputs';
 import { is } from '@tuval/core';
-import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography } from '@tuval/forms';
+import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography, UIContextMenu } from '@tuval/forms';
 import {
     cLeading, ForEach, HStack, TableColumn, Text, UIAppearance, UITable, UIView, VStack, cTopLeading, TextField, cHorizontal,
     BindingClass, bindState, UIImage, cTop, UIButton, Color, SecureField,
@@ -29,7 +29,8 @@ export interface ITableViewColumn {
 
 export interface IAction {
     icon: string;
-    iconColor?: ColorClass,
+    title?: string;
+    iconColor?: string,
     tooltip: string;
     link: string;
     linkState: any;
@@ -391,6 +392,35 @@ export namespace Views {
         )
     )
 
+    export const ActionContextMenu = (actions: IAction[]) => {
+        return (
+            UIContextMenu(
+                ...ForEach(actions)(item =>
+                    UIRouteLink(item.link, item.linkState)(
+                        HStack({ alignment: cLeading, spacing: 10 })(
+                            Icon(item.icon).size(20).foregroundColor(item.iconColor as any),
+
+                            Text(item.title).foregroundColor(item.iconColor as any)
+
+                        ).padding(10)
+                    )
+                )
+
+            )(
+
+                HStack(
+                    Icon('\\e5d4').size(20).foregroundColor(Color.gray))
+            )
+                .cornerRadius(50)
+                .width()
+                .height()
+                .padding(8)
+                .background({ hover: 'rgb(230, 230, 230)' })
+                .cursor('pointer')
+                .transition('all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s')
+        )
+
+    }
 }
 
 
