@@ -373,7 +373,7 @@ export namespace Views {
     export const FormSection = ({ title, content }: { title: string, content: UIView }) => (
         VStack({ alignment: cTop})(
             HStack({ alignment: cLeading })(
-                Typography({ variant: 'subtitle1' })('General Info')
+                Typography({ variant: 'subtitle1' })(title)
             ).height().paddingBottom('10px'),
             content
         )

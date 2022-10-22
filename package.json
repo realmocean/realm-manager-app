@@ -102,13 +102,13 @@
         ]
     },
     "devDependencies": {
-        "@realmocean/buttons": "^0.0.3",
-        "@realmocean/common": "^1.0.114",
+        "@realmocean/buttons": "^0.0.5",
+        "@realmocean/common": "^1.0.118",
         "@realmocean/dropdowns": "^0.0.17",
-        "@realmocean/inputs": "^0.0.6",
+        "@realmocean/inputs": "^0.0.9",
         "@tuval/cg": "^0.0.16",
-        "@tuval/core": "^0.0.92",
-        "@tuval/forms": "^0.0.42",
+        "@tuval/core": "^0.0.94",
+        "@tuval/forms": "^0.0.100",
         "@tuval/graphics": "^0.0.10",
         "chokidar": "^3.5.3",
         "css-loader": "^6.2.0",

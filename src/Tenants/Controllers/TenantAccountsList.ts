@@ -124,7 +124,7 @@ export class TenantAccountsList extends UIController {
                                                     .onTextChange((value) => this.Search_Action(value))
                                             ).border('solid 1px #dfdfdf').padding(10).width(300).cornerRadius(5),
                                             Spacer(),
-                                            UIRouteLink('/app(realmmanager)/tenant/add')(
+                                            UIRouteLink(`/app(realmmanager)/tenant/${this.tenantId}/add/account`)(
                                                 UIButtonView().text('New Account')
                                             )
                                         ).height().marginBottom('24px'),

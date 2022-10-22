@@ -141,7 +141,6 @@ export class RealmBrokerClient {
         });
     }
 
-
     public static async CreateAccountAndAddToTenant(tenant_id: string, account_name: string, account_password: string, account_email: string, is_tenant_admin: boolean): Promise<any> {
         return new Promise((resolve, reject) => {
             const form = new FormData();
