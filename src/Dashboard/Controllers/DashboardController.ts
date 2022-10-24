@@ -80,6 +80,8 @@ export class DashboardController extends UIController {
             //console.log(result);
         })
 
+       
+
         RealmBrokerClient.GetLoginsLast30Days().then(result => {
             const data = [];
             this.totalLogins = result.total_logins;

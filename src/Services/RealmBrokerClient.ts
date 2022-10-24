@@ -203,9 +203,39 @@ export class RealmBrokerClient {
                 });
         });
     }
+
     public static async GetLoginsLast30Days(): Promise<any> {
         return new Promise((resolve, reject) => {
             RealmHttpClient.Post(ConfigService.GetRealmBrokerUrl() + 'GetLoginsLast30Days')
+                .then(response => {
+                    resolve(response.data);
+                });
+        });
+    }
+
+    public static async GetIssues(owner: string, repo: string): Promise<any> {
+        const form = new FormData();
+        form.append('owner', owner);
+        form.append('repo', repo);
+
+        return new Promise((resolve, reject) => {
+            RealmHttpClient.Post(ConfigService.GetRealmBrokerUrl() + 'GetIssues', form)
+                .then(response => {
+                    resolve(response.data);
+                });
+        });
+    }
+
+    public static async CreateIssue(owner: string, repo: string, title: string, body: string): Promise<any> {
+        const form = new FormData();
+        form.append('owner', owner);
+        form.append('repo', repo);
+        form.append('title', title);
+        form.append('body', body);
+
+
+        return new Promise((resolve, reject) => {
+            RealmHttpClient.Post(ConfigService.GetRealmBrokerUrl() + 'CreateIssue', form)
                 .then(response => {
                     resolve(response.data);
                 });

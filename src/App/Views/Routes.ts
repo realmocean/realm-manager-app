@@ -15,6 +15,8 @@ import { DeleteAccountController } from '../../Accounts/Controllers/DeleteAccoun
 import { theme } from '../../theme/theme';
 import { EditTenantAccount } from '../../Tenants/Controllers/EditTenantAccount';
 import { ChangeLogController } from '../Controllers/ChangeLogController';
+import { IssuesController } from '../../Issues/Controller/IssuesController';
+import { NewIssueController } from '../../Issues/Controller/NewIssueController';
 
 export const Routes = () => {
     const [LoggedIn, setLoggedIn] = bindState(null);
@@ -33,6 +35,9 @@ export const Routes = () => {
         UIRoute(
             UIRoute('/app(realmmanager)/dashboard', DashboardController),
             UIRoute('/app(realmmanager)/changelog', ChangeLogController),
+            UIRoute('/app(realmmanager)/issues', IssuesController),
+            UIRoute('/app(realmmanager)/issue/new', NewIssueController),
+            
             UIRoute(
                 UIRoute('list', TenantListController),
                 UIRoute('add', AddEditTenantController),

@@ -52,6 +52,11 @@ const menuModel = [
                 icon: '\\ea40',
                 link: '/app(realmmanager)/changelog'
             },
+            {
+                name: 'Issues',
+                icon: '\\ea40',
+                link: '/app(realmmanager)/issues'
+            },
             
         ]
     },
