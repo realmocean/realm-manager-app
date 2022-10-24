@@ -18,7 +18,8 @@ import {
     cTrailing,
     ForEach,
     ScrollView,
-    cVertical
+    cVertical,
+    RenderingTypes
 } from '@tuval/forms';
 
 import { RealmBrokerClient, IGetTenantByIdResponse } from '../../Services/RealmBrokerClient';
@@ -34,10 +35,16 @@ import { UIButtonView, UISwitch } from '@realmocean/buttons';
 import { useOrgProvider } from '@realmocean/common';
 import { is } from '@tuval/core';
 
-export class AddNewAccountToTenant extends UIController {
+export class EditTenantAccount extends UIController {
+
+    @State()
+    private formIsReady: boolean;
 
     @State()
     private tenant_id: string;
+
+    @State()
+    private account_id: string;
 
     @State()
     private tenantName: string;
@@ -68,9 +75,12 @@ export class AddNewAccountToTenant extends UIController {
     @State()
     private isFormNotValid: boolean;
 
-    public BindRouterParams({ tenant_id }) {
+    public BindRouterParams({ tenant_id, account_id }) {
+
+        this.BeginUpdate();
 
         this.tenant_id = tenant_id;
+        this.account_id = account_id;
 
 
         const orgService = useOrgProvider();
@@ -79,10 +89,19 @@ export class AddNewAccountToTenant extends UIController {
             this.tenantName = tenant.Name;
         })
 
-    }
-    public BindModel() {
+        orgService.getAccountById(account_id).then(account => {
+            this.accountName = account.Name;
+            this.accountFirstName = account.FirstName;
+            this.accountLastName = account.LastName;
+            this.accountEmail = account.EMail;
+            this.isTenantAdmin = account.IsTenantAdmin;
+            this.EndUpdate();
+            this.formIsReady = true;
+        })
 
     }
+
+
     private isFormValid(): boolean {
         let result = true;
 
@@ -98,7 +117,7 @@ export class AddNewAccountToTenant extends UIController {
         if (this.isFormValid()) {
             const orgService = useOrgProvider();
 
-            orgService.createAccountAndAddToTenant(this.tenant_id, this.accountName, this.accountFirstName, this.accountLastName, this.accountPassword, this.accountEmail, !!this.isTenantAdmin).then(response => {
+            orgService.updateTenantAccount(this.account_id, this.accountName, this.accountFirstName, this.accountLastName, this.accountEmail, !!this.isTenantAdmin).then(response => {
                 this.navigotor(`/app(realmmanager)/tenant/${this.tenant_id}/accounts`, { state: { tenant_name: this.tenantName }, replace: true });
             });
         }
@@ -114,11 +133,12 @@ export class AddNewAccountToTenant extends UIController {
         return ({ AppController_ContextAction_SetController }) => {
             return (
                 UIScene(
+
                     HStack({ alignment: cTopLeading })(
                         LeftSideMenuView('', 'Tenants'),
                         Views.RightSidePage({
                             title: `Add Account to ${this.tenantName}`,
-                            content: (
+                            content: this.formIsReady ? (
                                 ScrollView({ axes: cVertical, alignment: cTop })(
                                     VStack({ alignment: cTop, spacing: 10 })(
                                         Views.FormSection({
@@ -126,14 +146,15 @@ export class AddNewAccountToTenant extends UIController {
                                             content: (
                                                 VStack({ spacing: 15 })(
                                                     UITextBoxView().placeholder('Account Name *')
+                                                        .value(this.accountName)
                                                         .floatlabel(true)
                                                         .width('100%')
                                                         .change(e => this.accountName = e)
                                                         .lineColor(this.isFormNotValid ? 'red' : null)
                                                     ,
-                                                    UITextBoxView().placeholder('First Name').floatlabel(true).width('100%').change(e => this.accountFirstName = e),
-                                                    UITextBoxView().placeholder('Last Name').floatlabel(true).width('100%').change(e => this.accountLastName = e),
-                                                    UITextBoxView().placeholder('Email Address *').floatlabel(true).width('100%').change(e => this.accountEmail = e),
+                                                    UITextBoxView().placeholder('First Name').value(this.accountFirstName).floatlabel(true).width('100%').change(e => this.accountFirstName = e),
+                                                    UITextBoxView().placeholder('Last Name').value(this.accountLastName).floatlabel(true).width('100%').change(e => this.accountLastName = e),
+                                                    UITextBoxView().placeholder('Email Address *').value(this.accountEmail).floatlabel(true).width('100%').change(e => this.accountEmail = e),
                                                 )
                                             )
 
@@ -143,29 +164,21 @@ export class AddNewAccountToTenant extends UIController {
                                             content: (
                                                 HStack({ alignment: cLeading, spacing: 15 })(
                                                     Text('Tenant Manager'),
-                                                    UISwitch().checked(this.isTenantAdmin).change((e)=> this.isTenantAdmin = e.checked)
+                                                    UISwitch().checked(this.isTenantAdmin).change((e) => this.isTenantAdmin = e.checked)
                                                 )
                                             ).height()
 
                                         }),
-                                        Views.FormSection({
-                                            title: 'Password',
-                                            content: (
-                                                VStack({ spacing: 15 })(
-                                                    UITextBoxView().placeholder('Password *').floatlabel(true).width('100%').change(e => this.accountPassword = e),
-                                                    UITextBoxView().placeholder('Password Again *').floatlabel(true).width('100%').change(e => this.accountPassword1 = e)
-                                                )
-                                            )
-
-                                        }),
+                                       
                                         HStack({ alignment: cTrailing })(
-                                            UIButtonView().text(this.tenant_info == null ? 'Create Account' : 'Update Tenant')
+                                            UIButtonView().text('Update Account')
                                                 .onClick(() => this.action_Save())
 
                                         ).height(),
                                     ).padding('1rem')
                                         .width(600).height()
                                 )
+
                                 /*  VStack({ alignment: cTopLeading, spacing: 10 })(
                                      Views.InputTextView('Full Name *', 'Enter a name', $(this.accountName), true, $(this.isAccountNameInvalid), 'Name is required.', this.formPostTried),
                                      Views.EmailInputView('Email Address *', 'Enter email address', $(this.accountEmail), $(this.isAccountEmailInvalid), this.formPostTried),
@@ -175,9 +188,12 @@ export class AddNewAccountToTenant extends UIController {
 
                                  ).background(Color.white) */
                             )
+                                :
+                                Spinner()
 
                         })
                     )
+
                 )
             )
         }

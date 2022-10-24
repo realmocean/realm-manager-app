@@ -13,6 +13,8 @@ import { AddNewAccountToTenant } from '../../Tenants/Controllers/AddNewAccountTo
 import { DeleteTenantController } from '../../Tenants/Controllers/DeleteTenantController';
 import { DeleteAccountController } from '../../Accounts/Controllers/DeleteAccountController';
 import { theme } from '../../theme/theme';
+import { EditTenantAccount } from '../../Tenants/Controllers/EditTenantAccount';
+import { ChangeLogController } from '../Controllers/ChangeLogController';
 
 export const Routes = () => {
     const [LoggedIn, setLoggedIn] = bindState(null);
@@ -30,10 +32,13 @@ export const Routes = () => {
     return UIRoutes(
         UIRoute(
             UIRoute('/app(realmmanager)/dashboard', DashboardController),
+            UIRoute('/app(realmmanager)/changelog', ChangeLogController),
             UIRoute(
                 UIRoute('list', TenantListController),
                 UIRoute('add', AddEditTenantController),
                 UIRoute(':tenant_id/add/account', AddNewAccountToTenant),
+                UIRoute(':tenant_id/edit/account/:account_id', EditTenantAccount),
+                
                 UIRoute('edit/:tenant_id', AddEditTenantController),
                 UIRoute('delete/:tenant_id', DeleteTenantController),
                 UIRoute(':tenant_id/accounts', TenantAccountsList),

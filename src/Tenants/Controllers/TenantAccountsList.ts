@@ -2,6 +2,7 @@ import {
     cLeading,
     Color,
     cTopLeading,
+    getRouterParams,
     HStack,
     Spacer,
     Spinner,
@@ -32,12 +33,33 @@ const columns: ITableViewColumn[] = [
         key: "Name"
     },
     {
+        title: 'First Name',
+        key: "FirstName"
+    },
+    {
+        title: 'LastName',
+        key: "LastName"
+    },
+    {
         title: 'Email',
         key: "Email"
     },
     {
+        title: 'Type',
+        view: (account: IAccount) => {
+            const {tenant_id} = getRouterParams();
+            return (
+            HStack({ alignment: cLeading })(
+                account.IsTenantAdmin ? Text('Organization Admin') : Text('Member')
+            )
+        )
+            }
+    },
+    {
         title: '',
-        view: (employee: IAccount) => (
+        view: (account: IAccount) => {
+            const {tenant_id} = getRouterParams();
+            return (
             HStack({ alignment: cLeading })(
                 Views.ActionContextMenu([
                     {
@@ -45,20 +67,21 @@ const columns: ITableViewColumn[] = [
                         icon: '\\d202',
                         tooltip: 'Edit',
                         iconColor: '#505A64',
-                        link: `/app(tenantmanager)/employee/edit/${employee.Id}`,
-                        linkState: { position: employee }
+                        link: `/app(realmmanager)/tenant/${tenant_id}/edit/account/${account.Id}`,
+                        linkState: { position: account }
                     },
                     {
                         title: 'Delete',
                         icon: '\\d390',
                         tooltip: 'Delete',
                         iconColor: Color.red400 as any,
-                        link: `/app(tenantmanager)/employee/delete/${employee.Id}`,
-                        linkState: { position: employee }
+                        link: `/app(tenantmanager)/employee/delete/${account.Id}`,
+                        linkState: { position: account }
                     }
                 ])
             )
         )
+            }
     }
 ]
 

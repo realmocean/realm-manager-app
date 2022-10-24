@@ -1,6 +1,6 @@
 import { UITextBoxView } from '@realmocean/inputs';
 import { is } from '@tuval/core';
-import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography, UIContextMenu } from '@tuval/forms';
+import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography, UIContextMenu, AlignmentType, cCenter, cTrailing } from '@tuval/forms';
 import {
     cLeading, ForEach, HStack, TableColumn, Text, UIAppearance, UITable, UIView, VStack, cTopLeading, TextField, cHorizontal,
     BindingClass, bindState, UIImage, cTop, UIButton, Color, SecureField,
@@ -22,6 +22,7 @@ const validateEmail = (email) => {
 
 export interface ITableViewColumn {
     title?: string;
+    titleAlignment?: 'start' | 'middle' | 'end';
     key?: string;
     width?: string,
     view?: (row) => UIView;
@@ -36,11 +37,27 @@ export interface IAction {
     linkState: any;
 }
 
+function getAligment(column?: ITableViewColumn): AlignmentType {
+    switch (column.titleAlignment) {
+        case 'start':
+            return cLeading;
+        case 'middle':
+            return cCenter;
+        case 'end':
+            return cTrailing;
+        default:
+            return cLeading;
+    }
+}
 export namespace Views {
     export const TableView = <T>(columns: ITableViewColumn[], data: T[]) => (
         UITable(
             ...ForEach(columns)(column =>
-                TableColumn(Text(column.title))(row =>
+                TableColumn(
+                    HStack({ alignment: getAligment(column) })(
+                        Text(column.title)
+                    )
+                )(row =>
                     is.function(column.view) ?
                         column.view(row)
                         :
@@ -371,7 +388,7 @@ export namespace Views {
     )
 
     export const FormSection = ({ title, content }: { title: string, content: UIView }) => (
-        VStack({ alignment: cTop})(
+        VStack({ alignment: cTop })(
             HStack({ alignment: cLeading })(
                 Typography({ variant: 'subtitle1' })(title)
             ).height().paddingBottom('10px'),

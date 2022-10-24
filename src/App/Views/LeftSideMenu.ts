@@ -43,6 +43,18 @@ const menuModel = [
               } */
         ]
     },
+    {
+        title: 'Other',
+        subItems: [
+
+            {
+                name: 'Change Log',
+                icon: '\\ea40',
+                link: '/app(realmmanager)/changelog'
+            },
+            
+        ]
+    },
     /*  {
          title: 'Other',
          subItems: [

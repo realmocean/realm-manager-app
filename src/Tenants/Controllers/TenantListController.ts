@@ -1,6 +1,7 @@
 import {
     cLeading,
     cTopLeading,
+    cTrailing,
     HStack,
     IconLibrary,
     Spacer,
@@ -34,13 +35,21 @@ const columns: ITableViewColumn[] = [
     },
     {
         title: 'Account Count',
-        key: "AccountCount"
+        titleAlignment:'middle',
+        view: (tenant: any) => (
+            HStack(
+                Text(tenant.AccountCount)
+            )
+        )
     },
-
+    {
+        title: 'Created At',
+        key: "CreatedAt"
+    },
     {
         title: '',
         view: (tenant: any) => (
-            HStack({ alignment: cLeading })(
+            HStack(
                 Views.ActionContextMenu([
                     {
                         title: 'Accounts',
@@ -98,10 +107,8 @@ export class TenantListController extends UIController {
 
         //  if (this.tenants == null) {
         orgService.getTenants().then(tenants => {
-         
             this.showingTenants = this.tenants = tenants;
         })
-
         //  }
     }
 
@@ -112,7 +119,6 @@ export class TenantListController extends UIController {
     private Search_Action(value: string): void {
         this.showingTenants = this.tenants.filter((tenant: ITenant) => tenant.Name.toLowerCase().indexOf(value.toLowerCase()) > -1);
     }
-
 
     public LoadView(): any {
         return ({ AppController_ContextAction_SetController }) => {
