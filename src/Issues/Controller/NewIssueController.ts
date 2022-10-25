@@ -13,6 +13,9 @@ import {
     UIController,
     UIScene,
     VStack,
+    Button,
+    ScrollView,
+    cVertical
 } from '@tuval/forms';
 
 import { UIButtonView } from '@realmocean/buttons'
@@ -30,21 +33,25 @@ const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica
 export class NewIssueController extends UIController {
 
     @State()
-   private issueTitle: string;
+    private issueTitle: string;
 
-   @State()
-   private issueBody: string;
+    @State()
+    private issueBody: string;
+
+    @State()
+    private issueIsCreating: boolean;
 
     public BindRouterParams() {
-      
+
         //  }
     }
 
-   
+
     private action_Save(): void {
-        RealmBrokerClient.CreateIssue('realmocean','realm-manager-app', this.issueTitle,this.issueBody).then(result => {
-            console.log(result);
-        }) 
+        this.issueIsCreating = true;
+        RealmBrokerClient.CreateIssue('realmocean', 'realm-manager-app', this.issueTitle, this.issueBody).then(result => {
+            this.navigotor('/app(realmmanager)/issues');
+        })
     }
 
     public LoadView(): any {
@@ -56,21 +63,24 @@ export class NewIssueController extends UIController {
                         Views.RightSidePage({
                             title: 'Create Issue',
                             content: (
-                                HStack({ alignment: cTopLeading })(
-                                   
+                                    HStack({ alignment: cTopLeading })(
                                         VStack({ alignment: cTopLeading, spacing: 10 })(
                                             HStack(
-                                            TextField().onTextChange(e => this.issueTitle = e).fontSize(16)
+                                                TextField().onTextChange(e => this.issueTitle = e).fontSize(16)
                                             ).border('solid 1px rgba(125,125,125,0.5)').height().padding(10).cornerRadius(10),
                                             HStack(
                                                 TextField().multiline(true).onTextChange(e => this.issueBody = e).height(200).fontSize(16)
-                                                ).border('solid 1px rgba(125,125,125,0.5)').height().padding(10).cornerRadius(10),
-                                                UIButton(
-                                                    Views.AcceptButton({label: 'Create issue', action: () => this.action_Save()})
-                                                )
-                                            
+                                            ).border('solid 1px rgba(125,125,125,0.5)').height().padding(10).cornerRadius(10),
+                                            HStack({ alignment: cTrailing })(
+                                                Button(
+                                                    Text('Create issue')
+                                                ).onClick(() => this.action_Save() )
+                                                    .loading(this.issueIsCreating)
+                                                    .width(200)
+                                            ).height()
                                         )
-                                ).background(Color.white)
+                                    ).background(Color.white)
+                                
                             )
                         })
                     )

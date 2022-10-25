@@ -45,7 +45,7 @@ export const Routes = () => {
                 UIRoute(':tenant_id/edit/account/:account_id', EditTenantAccount),
                 
                 UIRoute('edit/:tenant_id', AddEditTenantController),
-                UIRoute('delete/:tenant_id', DeleteTenantController),
+                UIRoute(':tenant_id/delete', DeleteTenantController),
                 UIRoute(':tenant_id/accounts', TenantAccountsList),
 
                 //UIRoute('list', new RealmsController()),

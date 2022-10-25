@@ -47,6 +47,10 @@ const columns: ITableViewColumn[] = [
         key: "CreatedAt"
     },
     {
+        title: 'Updated At',
+        key: "UpdatedAt"
+    },
+    {
         title: '',
         view: (tenant: any) => (
             HStack(
@@ -72,7 +76,7 @@ const columns: ITableViewColumn[] = [
                         icon: '\\d390',
                         tooltip: 'Delete',
                         iconColor: Color.red400 as any,
-                        link: `/app(tenantmanager)/employee/delete/${tenant.Id}`,
+                        link: `/app(realmmanager)/tenant/${tenant.Id}/delete`,
                         linkState: { position: tenant }
                     }
                 ])

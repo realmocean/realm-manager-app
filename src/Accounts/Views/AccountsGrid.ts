@@ -1,4 +1,5 @@
-import { VStack, cTopLeading, cLeading, HStack, Text, Spacer, TextField, UITable, TableColumn, Icon, IconLibrary, UIContextMenu, UIAppearance, UIRouteLink } from '@tuval/forms';
+import { VStack, cTopLeading, cLeading, HStack, Text, Spacer, TextField, UITable, TableColumn, Icon, IconLibrary, UIContextMenu, 
+    UIAppearance, UIRouteLink } from '@tuval/forms';
 import { moment } from '@tuval/core';
 import { Views } from '../../Views/Views';
 

@@ -47,41 +47,41 @@ const columns: ITableViewColumn[] = [
     {
         title: 'Type',
         view: (account: IAccount) => {
-            const {tenant_id} = getRouterParams();
+            const { tenant_id } = getRouterParams();
             return (
-            HStack({ alignment: cLeading })(
-                account.IsTenantAdmin ? Text('Organization Admin') : Text('Member')
+                HStack({ alignment: cLeading })(
+                    account.IsTenantAdmin ? Text('Organization Admin') : Text('Member')
+                )
             )
-        )
-            }
+        }
     },
     {
         title: '',
         view: (account: IAccount) => {
-            const {tenant_id} = getRouterParams();
+            const { tenant_id } = getRouterParams();
             return (
-            HStack({ alignment: cLeading })(
-                Views.ActionContextMenu([
-                    {
-                        title: 'Edit',
-                        icon: '\\d202',
-                        tooltip: 'Edit',
-                        iconColor: '#505A64',
-                        link: `/app(realmmanager)/tenant/${tenant_id}/edit/account/${account.Id}`,
-                        linkState: { position: account }
-                    },
-                    {
-                        title: 'Delete',
-                        icon: '\\d390',
-                        tooltip: 'Delete',
-                        iconColor: Color.red400 as any,
-                        link: `/app(tenantmanager)/employee/delete/${account.Id}`,
-                        linkState: { position: account }
-                    }
-                ])
+                HStack({ alignment: cLeading })(
+                    Views.ActionContextMenu([
+                        {
+                            title: 'Edit',
+                            icon: '\\d202',
+                            tooltip: 'Edit',
+                            iconColor: '#505A64',
+                            link: `/app(realmmanager)/tenant/${tenant_id}/edit/account/${account.Id}`,
+                            linkState: { position: account }
+                        },
+                        {
+                            title: 'Delete',
+                            icon: '\\d390',
+                            tooltip: 'Delete',
+                            iconColor: Color.red400 as any,
+                            link: `/app(tenantmanager)/employee/delete/${account.Id}`,
+                            linkState: { position: account }
+                        }
+                    ])
+                )
             )
-        )
-            }
+        }
     }
 ]
 
@@ -103,12 +103,12 @@ export class TenantAccountsList extends UIController {
     private texts: string;
 
 
-    public BindRouterParams({ tenant_id, tenant_name }) {
+    public BindRouterParams({ tenant_id }) {
         this.tenantId = tenant_id;
-        this.tenantName = tenant_name;
 
         const orgServioce = useOrgProvider();
         if (tenant_id) {
+            orgServioce.getTenantById(tenant_id).then(tenant => this.tenantName = tenant.Name)
             //  if (this.tenants == null) {
             orgServioce.getAccountsByTenantId(tenant_id).then(accounts => {
                 this.showingTenantAccounts = this.tenantAccounts = accounts;

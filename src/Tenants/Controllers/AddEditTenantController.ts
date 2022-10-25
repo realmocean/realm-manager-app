@@ -15,7 +15,8 @@ import {
     Toggle,
     cTop,
     Typography,
-    cTrailing
+    cTrailing,
+    Button
 } from '@tuval/forms';
 
 import { RealmBrokerClient, IGetTenantByIdResponse } from '../../Services/RealmBrokerClient';
@@ -61,18 +62,18 @@ export class AddEditTenantController extends UIController {
 
     }
 
-    private ActionCreateTenant() {
+    private action_CreateTenant() {
 
         if (this.tenant_info != null) { //Edit tenant
             RealmBrokerClient.UpdateTenant(this.tenant_info.tenant_id, this.tenantName, this.tenantDescription).then(response => {
-                this.navigotor('/realm_manager/tenant/list', { replace: true });
+                this.navigotor('/app(realmmanager)/tenant/list', { replace: true });
             });
         } else { // New Tenant to add
             if (this.tenantName == null) {
                 this.showErrors = true;
             } else {
                 RealmBrokerClient.CreateTenant(this.tenantName, this.tenantDescription).then(response => {
-                    this.navigotor('/realm_manager/tenant/list', { replace: true });
+                    this.navigotor('/app(realmmanager)/tenant/list', { replace: true });
                 });
             }
         }
@@ -103,18 +104,24 @@ export class AddEditTenantController extends UIController {
                                                 )
                                             )
                                         }),
-                                        HStack({ alignment: cTrailing })(
-                                            UIButtonView().text(this.tenant_info == null ? 'Create Tenant' : 'Update Tenant')
-                                                .onClick(() => this.ActionCreateTenant())
+
+                                        VStack({ alignment: cTrailing, spacing: 20 })(
+
+                                            Button(
+                                                Text('Create Tenant')
+                                            )
+                                                .color('success')
+                                                .onClick(() => this.action_CreateTenant()),
+                                            HStack(
+                                                UIRouteLink(`/app(realmmanager)/tenant/list`)(
+                                                    Text('Cancel')
+                                                )
+                                            ).height(),
 
                                         ).height()
                                     ).padding('1rem')
-                                        .width(600).height(),
-                                    HStack({ alignment: cTrailing })(
-                                        UIRouteLink(`/app(realmmanager)/tenant/list`)(
-                                            Text('Cancel')
-                                        )
-                                    ).height()
+                                        .width(500).height(),
+
                                 ).height().width()
                             )
                         })
