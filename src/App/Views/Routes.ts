@@ -55,8 +55,8 @@ export const Routes = () => {
             UIRoute(
                 UIRoute('list', AccountListController),
                 UIRoute('add', NewAccountController),
-                UIRoute('edit/:account_id', EditAccountController),
-                UIRoute('delete/:account_id', DeleteAccountController),
+                UIRoute(':account_id/edit', EditAccountController),
+                UIRoute(':account_id/delete', DeleteAccountController),
                 //UIRoute('list', new RealmsController()),
                 //UIRoute('realm/:realm_id/realm-dashboard', new RealmDashboardController()),
             )('account', AccountsController),

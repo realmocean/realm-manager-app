@@ -1,30 +1,27 @@
-import { cTopLeading, HStack, UIController, UIRouteOutlet, UIScene } from '@tuval/forms';
+import {
+    cTopLeading,
+    HStack, UIController,
+    UIScene
+} from '@tuval/forms';
 
-import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
+import { UIRouteOutlet } from '@tuval/forms';
 
+
+const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
 
 export class AccountsController extends UIController {
 
-
-
-
-
-    public BindModel() {
-
-    }
-
-
     public LoadView(): any {
-        return ({ AppController_ContextAction_SetController }) => {
+
             return (
                 UIScene(
                     HStack({ alignment: cTopLeading })(
-                        LeftSideMenuView('', 'Accounts'),
+                        
                         UIRouteOutlet().width('100%').height('100%')
                     )
                 )
 
             )
-        }
+        
     }
 }

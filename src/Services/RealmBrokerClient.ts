@@ -80,7 +80,6 @@ export class RealmBrokerClient {
 
     public static async GetApps(): Promise<any[]> {
         return new Promise((resolve, reject) => {
-
             RealmHttpClient.Post(ConfigService.GetRealmBrokerUrl() + 'GetApps')
                 .then(response => {
                     resolve(response.data);
