@@ -17,7 +17,7 @@ import { RealmBrokerClient, IGetTenantsResponce } from '../../Services/RealmBrok
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Color, UIRouteLink, UIRouteOutlet } from '@tuval/forms';
 
-import { AddEditTenantController } from './AddEditTenantController';
+import { AddTenantController } from './AddTenantController';
 import { Services } from '../../Services/Services';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
 

@@ -3,7 +3,7 @@ import { UIRoute, UIRoutes, bindNavigate, bindState, useEffect } from '@tuval/fo
 import { EditAccountController } from '../../Accounts/Controllers/EditAccountController';
 import { NewAccountController } from '../../Accounts/Controllers/NewAccountController';
 import { DashboardController } from '../../Dashboard/Controllers/DashboardController';
-import { AddEditTenantController } from '../../Tenants/Controllers/AddEditTenantController';
+import { AddTenantController } from '../../Tenants/Controllers/AddTenantController';
 import { LayoutController } from '../Controllers/LayoutController';
 import { TenantListController } from './../../Tenants/Controllers/TenantListController';
 import { TenantsController } from './../../Tenants/Controllers/TenantsController';
@@ -17,6 +17,7 @@ import { EditTenantAccount } from '../../Tenants/Controllers/EditTenantAccount';
 import { ChangeLogController } from '../Controllers/ChangeLogController';
 import { IssuesController } from '../../Issues/Controller/IssuesController';
 import { NewIssueController } from '../../Issues/Controller/NewIssueController';
+import { EditTenantController } from '../../Tenants/Controllers/EditTenantController';
 
 export const Routes = () => {
     const [LoggedIn, setLoggedIn] = bindState(null);
@@ -40,11 +41,11 @@ export const Routes = () => {
             
             UIRoute(
                 UIRoute('list', TenantListController),
-                UIRoute('add', AddEditTenantController),
+                UIRoute('add', AddTenantController),
                 UIRoute(':tenant_id/add/account', AddNewAccountToTenant),
                 UIRoute(':tenant_id/edit/account/:account_id', EditTenantAccount),
                 
-                UIRoute('edit/:tenant_id', AddEditTenantController),
+                UIRoute(':tenant_id/edit', EditTenantController),
                 UIRoute(':tenant_id/delete', DeleteTenantController),
                 UIRoute(':tenant_id/accounts', TenantAccountsList),
 

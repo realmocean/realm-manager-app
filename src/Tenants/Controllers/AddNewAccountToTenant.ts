@@ -125,15 +125,15 @@ export class AddNewAccountToTenant extends UIController {
                                             title: 'Account Info',
                                             content: (
                                                 VStack({ spacing: 15 })(
-                                                    UITextBoxView().placeholder('Account Name *')
+                                                    UITextBoxView().placeholder('Account Name *').value(this.accountName)
                                                         .floatlabel(true)
                                                         .width('100%')
                                                         .change(e => this.accountName = e)
                                                         .lineColor(this.isFormNotValid ? 'red' : null)
                                                     ,
-                                                    UITextBoxView().placeholder('First Name').floatlabel(true).width('100%').change(e => this.accountFirstName = e),
-                                                    UITextBoxView().placeholder('Last Name').floatlabel(true).width('100%').change(e => this.accountLastName = e),
-                                                    UITextBoxView().placeholder('Email Address *').floatlabel(true).width('100%').change(e => this.accountEmail = e),
+                                                    UITextBoxView().value(this.accountFirstName).placeholder('First Name').floatlabel(true).width('100%').change(e => this.accountFirstName = e),
+                                                    UITextBoxView().value(this.accountLastName).placeholder('Last Name').floatlabel(true).width('100%').change(e => this.accountLastName = e),
+                                                    UITextBoxView().value(this.accountEmail).placeholder('Email Address *').floatlabel(true).width('100%').change(e => this.accountEmail = e),
                                                 )
                                             )
 
@@ -152,8 +152,8 @@ export class AddNewAccountToTenant extends UIController {
                                             title: 'Password',
                                             content: (
                                                 VStack({ spacing: 15 })(
-                                                    UITextBoxView().placeholder('Password *').floatlabel(true).width('100%').change(e => this.accountPassword = e),
-                                                    UITextBoxView().placeholder('Password Again *').floatlabel(true).width('100%').change(e => this.accountPassword1 = e)
+                                                    UITextBoxView().value(this.accountPassword).placeholder('Password *').floatlabel(true).width('100%').change(e => this.accountPassword = e),
+                                                    UITextBoxView().value(this.accountPassword1).placeholder('Password Again *').floatlabel(true).width('100%').change(e => this.accountPassword1 = e)
                                                 )
                                             )
 

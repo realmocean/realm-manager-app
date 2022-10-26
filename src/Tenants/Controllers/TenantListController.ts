@@ -20,7 +20,7 @@ import { UIButtonView } from '@realmocean/buttons'
 import { RealmBrokerClient, IGetTenantsResponce } from '../../Services/RealmBrokerClient';
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Color, UIRouteLink } from '@tuval/forms';
-import { AddEditTenantController } from './AddEditTenantController';
+import { AddTenantController } from './AddTenantController';
 import { Services } from '../../Services/Services';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
 import { ITableViewColumn, Views } from '../../Views/Views';
@@ -68,7 +68,7 @@ const columns: ITableViewColumn[] = [
                         icon: '\\d202',
                         tooltip: 'Edit',
                         iconColor: '#505A64',
-                        link: `/app(tenantmanager)/employee/edit/${tenant.Id}`,
+                        link: `/app(realmmanager)/tenant/${tenant.Id}/edit`,
                         linkState: { position: tenant }
                     },
                     {
