@@ -1,8 +1,9 @@
 
-import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown,useApplication } from '@tuval/forms';
+import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown, useApplication, ScrollView, cTop, cVertical, Icon } from '@tuval/forms';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
 import { Views } from '../../Views/Views';
 import { RealmBrokerClient } from '../../Services/RealmBrokerClient';
+import { UIKanban } from '@realmocean/kanban'
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
 
@@ -15,6 +16,66 @@ const items = [
         label: 'Hello',
         value: 'Mert'
     }
+]
+
+const colors = {
+    'Tanisma': 'rgb(205, 217,253)',
+    'InProgress': 'rgb(246, 248,211)',
+    'Review':'rgb(252,229,103)',
+    'Close':'rgb(250,194,10)'
+}
+const data = [
+    {
+        "Id": "1",
+        "Title": "Musteri 1",
+        "Status": "Tanisma",
+        "Summary": "Son gorusmede toplanti ayarlandi.",
+        "Priority": "High",
+        "Tags": "Bug, Release Bug",
+        "RankId": 1,
+        "Assignee": "Nancy Davloio"
+    },
+    {
+        "Id": "Task 2",
+        "Title": "Task - 29002",
+        "Status": "InProgress",
+        "Summary": "Add responsive support to applicaton",
+        "Priority": "Low",
+        "Tags": "Story, Kanban",
+        "RankId": 1,
+        "Assignee": "Andrew Fuller"
+    },
+    {
+        "Id": "Task 3",
+        "Title": "Task - 29003",
+        "Status": "Tanisma",
+        "Summary": "Show the retrived data from the server in grid control.",
+        "Priority": "High",
+        "Tags": "Bug, Breaking Issue",
+        "RankId": 2,
+        "Assignee": "Janet Leverling"
+    },
+    {
+        "Id": "Task 4",
+        "Title": "Task - 29004",
+        "Status": "Tanisma",
+        "Summary": "Fix the issues reported in the IE browser.",
+        "Priority": "High",
+        "Tags": "Bug, Customer",
+        "RankId": 3,
+        "Assignee": "Andrew Fuller"
+    },
+    {
+        "Id": "Task 5",
+        "Title": "Task - 29005",
+        "Status": "Review",
+        "Summary": "Improve application performance.",
+        "Priority": "Normal",
+        "Tags": "Story, Kanban",
+        "RankId": 1,
+        "Assignee": "Steven walker"
+    },
+  
 ]
 
 export class DashboardController extends UIController {
@@ -80,7 +141,7 @@ export class DashboardController extends UIController {
             //console.log(result);
         })
 
-       
+
 
         RealmBrokerClient.GetLoginsLast30Days().then(result => {
             const data = [];
@@ -189,54 +250,76 @@ export class DashboardController extends UIController {
                         title: 'Dashboard',
                         content: (
                             VStack({ alignment: cTopLeading, spacing: 20 })(
-                              /*   HStack(
-                                    DropDown(option =>
-                                        Text(option.label)
-                                    )(option =>
-                                        HStack({ alignment: cLeading, spacing: 5 })(
-                                            Text(option.label),
-                                            Text(option.label)
-                                        )
+
+                             /*    ScrollView({ axes: cVertical, alignment: cTopLeading })(
+                                    VStack({ alignment: cTopLeading })(
+                                        UIKanban()
+                                            .dataSource(data)
+                                            .headerTemplate(item =>
+                                                VStack({alignment:cLeading, spacing: 5})(
+                                                    HStack({ alignment: cLeading, spacing: 10 })(
+                                                        Icon(IconLibrary.AddTask).size(20),
+                                                        Text(item.headerText).fontSize(18)
+                                                    )
+                                                    .cornerRadius(5)
+                                                    .padding(10)
+                                                    .background('rgb(43,43,43)')
+                                                    .foregroundColor('rgb(198,198,198)')
+                                                    .clipPath('polygon(0% 0%, calc(100% - 10px) 0, 100% 48%, calc(100% - 10px) 100%, 0% 100%)'),
+                                                    HStack(
+                                                        Text('')
+                                                    )
+                                                    .width('calc(100% - 10px)')
+                                                    .height(20).background(colors[item.keyField]?? 'blue')
+                                                    
+                                                )
+                                            )
+                                            .cardTemplate(item =>
+                                                VStack({ alignment: cLeading })(
+                                                    Text(item.Title).fontSize(16).fontWeight('500'),
+                                                    Text(item.Summary).fontSize(10)
+                                                ).height().padding(5).background(Color.white)
+                                            )
+
                                     )
-                                        .model(items).value(this.selectedItem).onSelected((value) => this.selectedItem = value)
-                                ).border('solid 1px gray').height(50)
-                                , */
-                                VStack(
-                                    UIChart().series(series).options(options as any)
-                                        .height(300),
+                                ) */
 
-                                    HStack({ alignment: cTopLeading, spacing: 20 })(
-                                        VStack({ alignment: cLeading })(
-                                            Text('Logins').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
-                                                .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
-                                            Text(this.totalLogins).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#b40404').fontFamily('Ubuntu,sans-serif')
-                                        ).width(),
-                                        VStack({ alignment: cLeading })(
-                                            Text('Users').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
-                                                .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
-                                            Text(this.totalUsers).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#f0bc6c').fontFamily('Ubuntu,sans-serif')
-                                        ).width()
-                                    )
-                                        .padding('10px 20px').left('55px').width().height().position(PositionTypes.Absolute).top('45px')
-                                        .background('rgba(255,255,255,.8)')
-                                        .shadow('0 4px 9px 0 rgb(0 0 0 / 15%)')
-                                        .cornerRadius(8)
-                                ).padding(5).height(),
-
-                                HStack({ alignment: cTopLeading, spacing: 10 })(
-                                    /*  DashboardItem(IconLibrary.Visibility, 'Logins', '1300', 'AVG'),
-                                     DashboardItem(IconLibrary.Visibility, 'App Downloads', '1300', 'AVG') */
-                                    Views.DashboardTile('Tenants', '126', IconLibrary.AccountCircle,
-                                        Color.blue500, Color.blue100),
-                                    Views.DashboardTile('Errors', '12', '\\d21e',
-                                        Color.red700, Color.red100),
-                                    Views.DashboardTile('Active Tickets', '55', '\\d1f3',
-                                        Color.green500, Color.green100),
-
-                                ).height()
+                                 VStack(
+                                  
+                                     UIChart().series(series).options(options as any)
+                                         .height(300),
+ 
+                                     HStack({ alignment: cTopLeading, spacing: 20 })(
+                                         VStack({ alignment: cLeading })(
+                                             Text('Logins').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
+                                                 .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
+                                             Text(this.totalLogins).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#b40404').fontFamily('Ubuntu,sans-serif')
+                                         ).width(),
+                                         VStack({ alignment: cLeading })(
+                                             Text('Users').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
+                                                 .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
+                                             Text(this.totalUsers).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#f0bc6c').fontFamily('Ubuntu,sans-serif')
+                                         ).width()
+                                     )
+                                         .padding('10px 20px').left('55px').width().height().position(PositionTypes.Absolute).top('45px')
+                                         .background('rgba(255,255,255,.8)')
+                                         .shadow('0 4px 9px 0 rgb(0 0 0 / 15%)')
+                                         .cornerRadius(8)
+                                 ).padding(5).height(),
+ 
+                                 HStack({ alignment: cTopLeading, spacing: 10 })(
+                                     Views.DashboardTile('Tenants', '126', IconLibrary.AccountCircle,
+                                         Color.blue500, Color.blue100),
+                                     Views.DashboardTile('Errors', '12', '\\d21e',
+                                         Color.red700, Color.red100),
+                                     Views.DashboardTile('Active Tickets', '55', '\\d1f3',
+                                         Color.green500, Color.green100),
+ 
+                                 ).height() 
                             )
                         )
                     })
+
                 )
             )
         )

@@ -9,3 +9,6 @@ npm install @realmocean/inputs --save-dev
 
 npm uninstall @realmocean/buttons
 npm install @realmocean/buttons --save-dev
+
+npm uninstall @realmocean/kanban
+npm install @realmocean/kanban --save-dev

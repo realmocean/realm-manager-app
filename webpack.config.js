@@ -63,7 +63,8 @@ const umdConfig = {
         '@realmocean/splitbuttons': 'realmocean$splitbuttons',
         '@realmocean/svgbase': 'realmocean$svgbase',
         '@realmocean/query-builder': 'realmocean$query-builder',
-        '@realmocean/spreadsheet': 'realmocean$spreadsheet'
+        '@realmocean/spreadsheet': 'realmocean$spreadsheet',
+        '@realmocean/kanban': 'realmocean$kanban'
     },
     module: {
         rules: [
