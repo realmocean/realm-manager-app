@@ -28,7 +28,7 @@ const data = [
     {
         "Id": "1",
         "Title": "Musteri 1",
-        "Status": "Tanisma",
+        "Status": "Close",
         "Summary": "Son gorusmede toplanti ayarlandi.",
         "Priority": "High",
         "Tags": "Bug, Release Bug",
@@ -37,9 +37,9 @@ const data = [
     },
     {
         "Id": "Task 2",
-        "Title": "Task - 29002",
+        "Title": "Musteri 2",
         "Status": "InProgress",
-        "Summary": "Add responsive support to applicaton",
+        "Summary": "Team ayarla",
         "Priority": "Low",
         "Tags": "Story, Kanban",
         "RankId": 1,
@@ -47,9 +47,9 @@ const data = [
     },
     {
         "Id": "Task 3",
-        "Title": "Task - 29003",
+        "Title": "Musteri 3",
         "Status": "Tanisma",
-        "Summary": "Show the retrived data from the server in grid control.",
+        "Summary": "Ziyaret planla",
         "Priority": "High",
         "Tags": "Bug, Breaking Issue",
         "RankId": 2,
@@ -57,9 +57,9 @@ const data = [
     },
     {
         "Id": "Task 4",
-        "Title": "Task - 29004",
+        "Title": "Musteri 4",
         "Status": "Tanisma",
-        "Summary": "Fix the issues reported in the IE browser.",
+        "Summary": "Demo ayarla",
         "Priority": "High",
         "Tags": "Bug, Customer",
         "RankId": 3,
@@ -67,9 +67,9 @@ const data = [
     },
     {
         "Id": "Task 5",
-        "Title": "Task - 29005",
+        "Title": "Musteri 5",
         "Status": "Review",
-        "Summary": "Improve application performance.",
+        "Summary": "Arama yap",
         "Priority": "Normal",
         "Tags": "Story, Kanban",
         "RankId": 1,
@@ -250,8 +250,7 @@ export class DashboardController extends UIController {
                         title: 'Dashboard',
                         content: (
                             VStack({ alignment: cTopLeading, spacing: 20 })(
-
-                             /*    ScrollView({ axes: cVertical, alignment: cTopLeading })(
+                                 ScrollView({ axes: cVertical, alignment: cTopLeading })(
                                     VStack({ alignment: cTopLeading })(
                                         UIKanban()
                                             .dataSource(data)
@@ -265,12 +264,13 @@ export class DashboardController extends UIController {
                                                     .padding(10)
                                                     .background('rgb(43,43,43)')
                                                     .foregroundColor('rgb(198,198,198)')
-                                                    .clipPath('polygon(0% 0%, calc(100% - 10px) 0, 100% 48%, calc(100% - 10px) 100%, 0% 100%)'),
-                                                    HStack(
+                                                   .clipPath('polygon(0% 0%, calc(100% - 10px) 0, 100% 48%, calc(100% - 10px) 100%, 0% 100%)')
+                                                   ,
+                                                     HStack(
                                                         Text('')
                                                     )
                                                     .width('calc(100% - 10px)')
-                                                    .height(20).background(colors[item.keyField]?? 'blue')
+                                                    .height(20).background(colors[item.keyField]?? 'blue') 
                                                     
                                                 )
                                             )
@@ -282,9 +282,9 @@ export class DashboardController extends UIController {
                                             )
 
                                     )
-                                ) */
+                                )  
 
-                                 VStack(
+                               /*   VStack(
                                   
                                      UIChart().series(series).options(options as any)
                                          .height(300),
@@ -315,7 +315,7 @@ export class DashboardController extends UIController {
                                      Views.DashboardTile('Active Tickets', '55', '\\d1f3',
                                          Color.green500, Color.green100),
  
-                                 ).height() 
+                                 ).height()   */
                             )
                         )
                     })
