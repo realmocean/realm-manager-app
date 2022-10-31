@@ -1,9 +1,10 @@
 
-import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown, useApplication, ScrollView, cTop, cVertical, Icon } from '@tuval/forms';
+import { Color, cTopLeading, HStack, IconLibrary, State, UIController, UIScene, UIChartOptions, VStack, Text, PositionTypes, cLeading, UIChart, Typography, UIView, UIButton, alpha, DropDown, useApplication, ScrollView, cTop, cVertical, Icon, UIAccordion, ForEach, TextAlignment, Button } from '@tuval/forms';
 import { LeftSideMenuView } from '../../App/Views/LeftSideMenu';
 import { Views } from '../../Views/Views';
 import { RealmBrokerClient } from '../../Services/RealmBrokerClient';
 import { UIKanban } from '@realmocean/kanban'
+import { useOrgUIProvider } from '@realmocean/common';
 
 const fontFamily = '"proxima-nova", "proxima nova", "helvetica neue", "helvetica", "arial", sans-serif'
 
@@ -18,11 +19,38 @@ const items = [
     }
 ]
 
+const accordionMenu = [
+    {
+        id: 1,
+        title: "Genel",
+        subItems: [
+            {
+                id: 1,
+                title: "Genel 1"
+            },
+            {
+                id: 2,
+                title: "Genel 2"
+            }
+        ]
+    },
+    {
+        id: 2,
+        title: "Genel 2",
+        subItems: [
+            {
+                id: 2,
+                title: "Genel 2"
+            }
+        ]
+    }
+]
+
 const colors = {
     'Tanisma': 'rgb(205, 217,253)',
     'InProgress': 'rgb(246, 248,211)',
-    'Review':'rgb(252,229,103)',
-    'Close':'rgb(250,194,10)'
+    'Review': 'rgb(252,229,103)',
+    'Close': 'rgb(250,194,10)'
 }
 const data = [
     {
@@ -75,7 +103,7 @@ const data = [
         "RankId": 1,
         "Assignee": "Steven walker"
     },
-  
+
 ]
 
 export class DashboardController extends UIController {
@@ -250,28 +278,34 @@ export class DashboardController extends UIController {
                         title: 'Dashboard',
                         content: (
                             VStack({ alignment: cTopLeading, spacing: 20 })(
-                                 ScrollView({ axes: cVertical, alignment: cTopLeading })(
+                                ScrollView({ axes: cVertical, alignment: cTopLeading })(
                                     VStack({ alignment: cTopLeading })(
                                         UIKanban()
+                                            .columns([
+                                                { headerText: 'Tanisma', keyField: 'Tanisma' },
+                                                { headerText: 'Ihtiyac Belirleme', keyField: 'InProgress' },
+                                                { headerText: 'Teklif Hazirlama', keyField: 'Review' },
+                                                { headerText: 'Pazarlik', keyField: 'Close' }
+                                            ])
                                             .dataSource(data)
                                             .headerTemplate(item =>
-                                                VStack({alignment:cLeading, spacing: 5})(
+                                                VStack({ alignment: cLeading, spacing: 5 })(
                                                     HStack({ alignment: cLeading, spacing: 10 })(
                                                         Icon(IconLibrary.AddTask).size(20),
                                                         Text(item.headerText).fontSize(18)
                                                     )
-                                                    .cornerRadius(5)
-                                                    .padding(10)
-                                                    .background('rgb(43,43,43)')
-                                                    .foregroundColor('rgb(198,198,198)')
-                                                   .clipPath('polygon(0% 0%, calc(100% - 10px) 0, 100% 48%, calc(100% - 10px) 100%, 0% 100%)')
-                                                   ,
-                                                     HStack(
+                                                        .cornerRadius(5)
+                                                        .padding(10)
+                                                        .background('rgb(43,43,43)')
+                                                        .foregroundColor('rgb(198,198,198)')
+                                                        .clipPath('polygon(0% 0%, calc(100% - 10px) 0, 100% 48%, calc(100% - 10px) 100%, 0% 100%)')
+                                                    ,
+                                                    HStack(
                                                         Text('')
                                                     )
-                                                    .width('calc(100% - 10px)')
-                                                    .height(20).background(colors[item.keyField]?? 'blue') 
-                                                    
+                                                        .width('calc(100% - 10px)')
+                                                        .height(20).background(colors[item.keyField] ?? 'blue')
+
                                                 )
                                             )
                                             .cardTemplate(item =>
@@ -282,12 +316,14 @@ export class DashboardController extends UIController {
                                             )
 
                                     )
-                                )  
+                                ),
 
-                               /*   VStack(
-                                  
+                                /*  VStack(
+ 
+                                    
                                      UIChart().series(series).options(options as any)
                                          .height(300),
+                                 
  
                                      HStack({ alignment: cTopLeading, spacing: 20 })(
                                          VStack({ alignment: cLeading })(
@@ -315,7 +351,7 @@ export class DashboardController extends UIController {
                                      Views.DashboardTile('Active Tickets', '55', '\\d1f3',
                                          Color.green500, Color.green100),
  
-                                 ).height()   */
+                                 ).height() */
                             )
                         )
                     })
