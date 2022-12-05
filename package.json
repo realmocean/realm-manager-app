@@ -102,11 +102,12 @@
         ]
     },
     "devDependencies": {
-        "@realmocean/buttons": "^0.0.9",
-        "@realmocean/common": "^1.0.150",
-        "@realmocean/dropdowns": "^0.0.17",
-        "@realmocean/inputs": "^0.0.9",
-        "@realmocean/kanban": "^20.3.111",
+        "@realmocean/buttons": "^0.0.10",
+        "@realmocean/calendars": "^0.0.6",
+        "@realmocean/common": "^1.0.156",
+        "@realmocean/dropdowns": "^0.0.18",
+        "@realmocean/inputs": "^0.0.12",
+        "@realmocean/kanban": "^20.3.114",
         "@tuval/cg": "^0.0.16",
         "@tuval/core": "^0.0.96",
         "@tuval/forms": "^0.0.110",

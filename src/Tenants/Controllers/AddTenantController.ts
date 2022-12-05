@@ -23,6 +23,7 @@ import { RealmBrokerClient, IGetTenantByIdResponse } from '../../Services/RealmB
 import { TenantsGrid } from '../Views/TenantsGrid';
 import { Color, UIImage, UIRouteLink, NavigateFunction, bindNavigate } from '@tuval/forms';
 import { UITextBoxView } from '@realmocean/inputs';
+import {UIDatePickerView, UIDateTimePickerView} from '@realmocean/calendars';
 import { TenantsController } from './TenantsController';
 import { Services } from '../../Services/Services';
 import { UIButtonView } from '@realmocean/buttons';
@@ -99,12 +100,12 @@ export class AddTenantController extends UIController {
                                             title: 'General Info',
                                             content: (
                                                 VStack({ spacing: 15 })(
+                                                  //  UIDatePickerView().placeHolder('Date of work').width('100%'),
                                                     UITextBoxView().placeholder('Name of Tenant').floatlabel(true).width('100%').change(e => this.tenantName = e),
                                                     UITextBoxView().placeholder('Add a description').floatlabel(true).width('100%').change(e => this.tenantDescription = e)
                                                 )
                                             )
                                         }),
-
                                         VStack({ alignment: cTrailing, spacing: 20 })(
 
                                             Button(

@@ -1,5 +1,6 @@
 import {
-    Color, Context, HStack, State, TForm, UIController,
+    cLeading,
+    Color, Context, HStack, Icon, RoundedRectangle, State, TextField, TForm, UIButton, UIController, Text,
     UIScene,
     VStack
 } from '@tuval/forms';
@@ -10,7 +11,23 @@ import { Routes } from '../Views/Routes';
 const manifest = require('../../manifest');
 
 
-
+export const SearchBar = (text: string, action: Function, hideAction: Function, minimizeAction: Function, maximizeAction: Function) =>
+    HStack({ spacing: 10 })(
+        Icon("\\e8b6").size(30).foregroundColor("#D3D3D3").cursor("pointer"),
+        TextField().fontSize("15px").placeholder(text)
+            .onTextChange((value) => action(value)).fontFamily("Montserrat"),
+        HStack({ alignment: cLeading, spacing: 8 })(
+            UIButton(
+                RoundedRectangle().backgroundColor('#FF605C').cornerRadius('50%').padding(1).width(11).height(11)
+            ).action(hideAction),
+            UIButton(
+                RoundedRectangle().backgroundColor('#FFBD47').cornerRadius('50%').padding(1).width(11).height(11)
+            ).action(minimizeAction),
+            UIButton(
+                RoundedRectangle().backgroundColor('#00CD4D').cornerRadius('50%').padding(1).width(11).height(11)
+            ).action(maximizeAction)
+        ).height().padding(20).width(),
+    ).paddingLeft("10px").width("100%").height(50).shadow("rgb(0 0 0 / 0%) 0px 1px 20px, rgb(0 0 0 / 24%) 0px 1px 20px")
 export class AppController extends UIController {
 
     private form: TForm;
@@ -23,6 +40,9 @@ export class AppController extends UIController {
 
     @State()
     private Code: string;
+
+    @State()
+    private searchText: string;
 
     @State()
     private currentController: UIController;
@@ -63,6 +83,5 @@ export class AppController extends UIController {
                 )
             )
         )
-
     }
 }

@@ -278,7 +278,7 @@ export class DashboardController extends UIController {
                         title: 'Dashboard',
                         content: (
                             VStack({ alignment: cTopLeading, spacing: 20 })(
-                                ScrollView({ axes: cVertical, alignment: cTopLeading })(
+                                /* ScrollView({ axes: cVertical, alignment: cTopLeading })(
                                     VStack({ alignment: cTopLeading })(
                                         UIKanban()
                                             .columns([
@@ -316,13 +316,15 @@ export class DashboardController extends UIController {
                                             )
 
                                     )
-                                ),
+                                ), */
 
-                                /*  VStack(
+                                  VStack(
  
-                                    
                                      UIChart().series(series).options(options as any)
-                                         .height(300),
+                                         .height(300).chartType('bar'),
+
+                                         UIChart().series(series).options(options as any)
+                                         .height(300).chartType('bar'),
                                  
  
                                      HStack({ alignment: cTopLeading, spacing: 20 })(
@@ -351,7 +353,7 @@ export class DashboardController extends UIController {
                                      Views.DashboardTile('Active Tickets', '55', '\\d1f3',
                                          Color.green500, Color.green100),
  
-                                 ).height() */
+                                 ).height() 
                             )
                         )
                     })

@@ -12,3 +12,6 @@ npm install @realmocean/buttons --save-dev
 
 npm uninstall @realmocean/kanban
 npm install @realmocean/kanban --save-dev
+
+npm uninstall @realmocean/calendars
+npm install @realmocean/calendars --save-dev
