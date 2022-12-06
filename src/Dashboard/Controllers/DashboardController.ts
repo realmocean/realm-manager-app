@@ -318,42 +318,49 @@ export class DashboardController extends UIController {
                                     )
                                 ), */
 
-                                  VStack(
- 
-                                     UIChart().series(series).options(options as any)
-                                         .height(300).chartType('bar'),
+                                VStack(
 
-                                         UIChart().series(series).options(options as any)
-                                         .height(300).chartType('bar'),
-                                 
- 
-                                     HStack({ alignment: cTopLeading, spacing: 20 })(
-                                         VStack({ alignment: cLeading })(
-                                             Text('Logins').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
-                                                 .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
-                                             Text(this.totalLogins).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#b40404').fontFamily('Ubuntu,sans-serif')
-                                         ).width(),
-                                         VStack({ alignment: cLeading })(
-                                             Text('Users').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
-                                                 .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
-                                             Text(this.totalUsers).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#f0bc6c').fontFamily('Ubuntu,sans-serif')
-                                         ).width()
-                                     )
-                                         .padding('10px 20px').left('55px').width().height().position(PositionTypes.Absolute).top('45px')
-                                         .background('rgba(255,255,255,.8)')
-                                         .shadow('0 4px 9px 0 rgb(0 0 0 / 15%)')
-                                         .cornerRadius(8)
-                                 ).padding(5).height(),
- 
-                                 HStack({ alignment: cTopLeading, spacing: 10 })(
-                                     Views.DashboardTile('Tenants', '126', IconLibrary.AccountCircle,
-                                         Color.blue500, Color.blue100),
-                                     Views.DashboardTile('Errors', '12', '\\d21e',
-                                         Color.red700, Color.red100),
-                                     Views.DashboardTile('Active Tickets', '55', '\\d1f3',
-                                         Color.green500, Color.green100),
- 
-                                 ).height() 
+                                    HStack(
+                                        HStack(
+                                            UIChart().series(series).options(options as any)
+                                                .height(300).chartType('area')
+                                        )
+                                            .background(Color.white)
+                                            .padding(20)
+                                            .cornerRadius(10)
+                                            .height()
+                                    )
+                                        .padding(20),
+
+
+
+                                    HStack({ alignment: cTopLeading, spacing: 20 })(
+                                        VStack({ alignment: cLeading })(
+                                            Text('Logins').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
+                                                .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
+                                            Text(this.totalLogins).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#b40404').fontFamily('Ubuntu,sans-serif')
+                                        ).width(),
+                                        VStack({ alignment: cLeading })(
+                                            Text('Users').fontSize(14).textTransform('uppercase').lineHeight('20px').fontWeight('600').foregroundColor('#333')
+                                                .fontFamily('Ubuntu,sans-serif').fontWeight('700').foregroundColor('#333'),
+                                            Text(this.totalUsers).fontSize(30).lineHeight('38px').fontWeight('700').foregroundColor('#f0bc6c').fontFamily('Ubuntu,sans-serif')
+                                        ).width()
+                                    )
+                                        .padding('10px 20px').left('95px').width().height().position(PositionTypes.Absolute).top('85px')
+                                        .background('rgba(255,255,255,.8)')
+                                        .shadow('0 4px 9px 0 rgb(0 0 0 / 15%)')
+                                        .cornerRadius(8)
+                                ).padding(5).height(),
+
+                                HStack({ alignment: cTopLeading, spacing: 10 })(
+                                    Views.DashboardTile('Tenants', '126', IconLibrary.AccountCircle,
+                                        Color.blue500, Color.blue100),
+                                    Views.DashboardTile('Errors', '12', '\\d21e',
+                                        Color.red700, Color.red100),
+                                    Views.DashboardTile('Active Tickets', '55', '\\d1f3',
+                                        Color.green500, Color.green100),
+
+                                ).height()
                             )
                         )
                     })

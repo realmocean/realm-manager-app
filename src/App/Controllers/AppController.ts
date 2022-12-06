@@ -9,7 +9,7 @@ import { theme } from '../../theme/theme';
 import { Routes } from '../Views/Routes';
 
 const manifest = require('../../manifest');
-
+declare var WebFont;
 
 export const SearchBar = (text: string, action: Function, hideAction: Function, minimizeAction: Function, maximizeAction: Function) =>
     HStack({ spacing: 10 })(
@@ -48,10 +48,6 @@ export class AppController extends UIController {
     private currentController: UIController;
 
 
-    protected InitController() {
-
-    }
-
     @Context()
     private AppController_ContextAction_SetController(controller: UIController) {
         this.currentController = controller;
@@ -66,6 +62,29 @@ export class AppController extends UIController {
     private OnMenuSelected(item: any) {
 
     }
+
+    protected InitController() {
+
+        WebFont.load({
+            google: {
+                families: ['Poppins:400,500,600,700', 'sans serif']
+            }
+        });
+
+        WebFont.load({
+            google: {
+                families: ['Manrope:400,500,600,700', 'sans serif']
+            }
+        });
+
+        WebFont.load({
+            google: {
+                families: ['Inter:400,500,600,700', 'sans serif']
+            }
+        });
+
+    }
+
     public OnBindModel(form: TForm) {
         this.form = form;
         RealmBrokerClient.GetRealmInfo('REALM_NAME').then(realm_info => {

@@ -1,8 +1,10 @@
 import {
+    cHorizontal,
     cLeading,
     cTopLeading,
     cTrailing,
     HStack,
+    Icon,
     IconLibrary,
     Spacer,
     Spinner,
@@ -35,7 +37,7 @@ const columns: ITableViewColumn[] = [
     },
     {
         title: 'Account Count',
-        titleAlignment:'middle',
+        titleAlignment: 'middle',
         view: (tenant: any) => (
             HStack(
                 Text(tenant.AccountCount)
@@ -91,7 +93,7 @@ export class TenantListController extends UIController {
     private tenants: ITenant[];
 
     @State()
-    private showingTenants:  ITenant[];
+    private showingTenants: ITenant[];
 
     @State()
     private texts: string;
@@ -137,20 +139,19 @@ export class TenantListController extends UIController {
                                     this.isLoading() ?
                                         VStack(Spinner()) :
                                         VStack({ alignment: cTopLeading, spacing: 10 })(
-                                            HStack(
+                                            HStack({ spacing: 10 })(
                                                 // MARK: Search Box
-                                                HStack(
-                                                    TextField().placeholder('Search by Tenant Name')
-                                                        .onTextChange((value) => this.Search_Action(value))
-                                                ).border('solid 1px #dfdfdf').padding(10).width(300).cornerRadius(5),
+                                                Views.SearchBox('Search by tenant name', this.Search_Action.bind(this)),
+
+
                                                 Spacer(),
                                                 UIRouteLink('/app(realmmanager)/tenant/add')(
                                                     UIButtonView().text('New Tenant')
                                                 )
-                                            ).height().marginBottom('24px'),
+                                            ).height().marginBottom('24px').padding(20),
                                             Views.TableView(columns, this.showingTenants)
                                         )
-                                ).background(Color.white)
+                                )
                             )
                         })
                     )

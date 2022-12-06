@@ -110,7 +110,7 @@
         "@realmocean/kanban": "^20.3.114",
         "@tuval/cg": "^0.0.16",
         "@tuval/core": "^0.0.96",
-        "@tuval/forms": "^0.0.110",
+        "@tuval/forms": "^0.0.399",
         "@tuval/graphics": "^0.0.10",
         "chokidar": "^3.5.3",
         "css-loader": "^6.2.0",

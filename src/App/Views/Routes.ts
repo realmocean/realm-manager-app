@@ -18,6 +18,7 @@ import { ChangeLogController } from '../Controllers/ChangeLogController';
 import { IssuesController } from '../../Issues/Controller/IssuesController';
 import { NewIssueController } from '../../Issues/Controller/NewIssueController';
 import { EditTenantController } from '../../Tenants/Controllers/EditTenantController';
+import { AuthController } from '../../domains/settings/auth/controllers/AuthController';
 
 export const Routes = () => {
     const [LoggedIn, setLoggedIn] = bindState(null);
@@ -38,13 +39,13 @@ export const Routes = () => {
             UIRoute('/app(realmmanager)/changelog', ChangeLogController),
             UIRoute('/app(realmmanager)/issues', IssuesController),
             UIRoute('/app(realmmanager)/issue/new', NewIssueController),
-            
+
             UIRoute(
                 UIRoute('list', TenantListController),
                 UIRoute('add', AddTenantController),
                 UIRoute(':tenant_id/add/account', AddNewAccountToTenant),
                 UIRoute(':tenant_id/edit/account/:account_id', EditTenantAccount),
-                
+
                 UIRoute(':tenant_id/edit', EditTenantController),
                 UIRoute(':tenant_id/delete', DeleteTenantController),
                 UIRoute(':tenant_id/accounts', TenantAccountsList),
@@ -60,6 +61,8 @@ export const Routes = () => {
                 //UIRoute('list', new RealmsController()),
                 //UIRoute('realm/:realm_id/realm-dashboard', new RealmDashboardController()),
             )('account', AccountsController),
+
+            UIRoute('auth', AuthController),
 
         )('/app(realmmanager)', LayoutController),
         UIRoute('*', DashboardController) //.redirectTo('/app(realmmanager)/dashboard')
