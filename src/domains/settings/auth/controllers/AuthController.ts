@@ -81,7 +81,7 @@ export class AuthController extends UIController {
                                         .onClick(()=> OAuth2ProviderSettingsDialog.Show(provider))
                                     )
 
-                                ).wrap('wrap')
+                                ).wrap('wrap').padding(20)
                             )
                         })
                     )

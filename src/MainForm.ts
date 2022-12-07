@@ -7,7 +7,7 @@ export class MainForm extends TForm {
     m_Toolbar: any;
     m_tbiLabel: any;
     public override InitComponents() {
-        this.Width = 1190;
+        this.Width = 1210;
         this.Height = 700;
        // this.Text = 'Realm Manager';
 

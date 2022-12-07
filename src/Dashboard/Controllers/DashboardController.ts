@@ -164,7 +164,6 @@ export class DashboardController extends UIController {
     }
 
     protected BindRouterParams() {
-        console.log(this.Application);
         RealmBrokerClient.GetRealmStatistics().then(result => {
             //console.log(result);
         })
@@ -182,7 +181,6 @@ export class DashboardController extends UIController {
                 ]);
             }
             this.loginsData = data;
-            console.log(data);
         })
         RealmBrokerClient.GetStandaloneLoginsLast30Days().then(result => {
             const data = [];
@@ -201,7 +199,6 @@ export class DashboardController extends UIController {
         this.showingItems = [...this.items.filter((item: any) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1)];
     }
     public LoadView() {
-        console.log(useApplication());
         const options: UIChartOptions = {
             colors: ['#b40404', '#f0bc6c'],
             legend: {

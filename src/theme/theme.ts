@@ -15,5 +15,3 @@ const themeOptions = {
 
 export const theme = createTheme(themeOptions);
 theme.components = Typography(theme);
-console.log(theme);
-

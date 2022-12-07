@@ -129,7 +129,7 @@ export class IssuesController extends UIController {
         this.tenants = null;
 
         RealmBrokerClient.GetIssues('realmocean', 'realm-manager-app').then((result: object[]) => {
-            console.log(result)
+     
             this.showingIssues = result;
         })
         //  }

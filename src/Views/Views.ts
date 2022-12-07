@@ -1,6 +1,6 @@
 import { UITextBoxView } from '@realmocean/inputs';
 import { is } from '@tuval/core';
-import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography, UIContextMenu, AlignmentType, cCenter, cTrailing, ScrollView, cVertical, UIController, Spinner } from '@tuval/forms';
+import { Icon, UIRouteLink, Spacer, IconLibrary, IconType, ColorClass, Typography, UIContextMenu, AlignmentType, cCenter, cTrailing, ScrollView, cVertical, UIController, Spinner, TextFieldClass } from '@tuval/forms';
 import {
     cLeading, ForEach, HStack, TableColumn, Text, UIAppearance, UITable, UIView, VStack, cTopLeading, TextField, cHorizontal,
     BindingClass, bindState, UIImage, cTop, UIButton, Color, SecureField,
@@ -537,6 +537,10 @@ export namespace Views {
         )
 
     }
+
+    export const TextInput = (): TextFieldClass => (
+        TextField().labelTemplate((label: string) => Text(label).foregroundColor('rgb(55,59,78)').paddingBottom('5px').fontSize(14).fontFamily('"Inter", arial, sans-serif'))
+    )
 }
 
 

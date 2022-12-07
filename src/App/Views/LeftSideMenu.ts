@@ -44,6 +44,29 @@ const menuModel = [
         ]
     },
     {
+        title: 'License Management',
+        subItems: [
+
+            {
+                name: 'Licenses',
+                icon: '\\e73c',
+                link: '/app(realmmanager)/tenant/list'
+            }
+            /*   {
+                  name: 'Account Pools',
+  
+              },
+              {
+                  name: 'Licenses',
+  
+              },
+              {
+                  name: 'Services',
+  
+              } */
+        ]
+    },
+    {
         title: 'Settings',
         subItems: [
 

@@ -92,7 +92,7 @@ export class AppController extends UIController {
         })
     }
     public LoadView() {
-        console.log(theme);
+      
         return (
             UIScene(
                 HStack(
