@@ -118,8 +118,20 @@ export const OAuth2Providers = [
     },
     {
         name: 'Autodesk',
-        icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIuMTA3MzYgMTlMMTQuMzU3IDExLjIwMjNIMjAuNzExOEMyMC45MDc5IDExLjIwMjMgMjEuMDgyOCAxMS4zNjIzIDIxLjA4MjggMTEuNTgyMUMyMS4wODI4IDExLjc2MTIgMjEuMDA1OSAxMS44NDI0IDIwLjkwNzkgMTEuOTAyMUwxNC44ODkyIDE1LjU5MTlDMTQuNDk3MSAxNS44MzMyIDE0LjM2MTcgMTYuMzEzMiAxNC4zNjE3IDE2LjY3MTVMMTQuMzU0NyAxOC45OTc2SDIyVjUuNDgwMDRDMjIgNS4yMTk3MiAyMS44MDQgNSAyMS41MTIyIDVIMTQuMjE5M0wyIDEyLjc2MTlWMTguOTk3NkgyLjEwNzM2VjE5WiIgZmlsbD0iYmxhY2siLz4KPC9zdmc+Cg=='
-    },
+        description: 'To use Autodesk authentication in your application, first fill in this form. For more info you can <a href="https://developer.amazon.com/apps-and-games/services-and-apis" target="_blank">visit the docs</a>.',
+        icon: '/static/assets/oauth2/autodesk.svg',
+        view: () => (
+            VStack({ alignment: cTopLeading, spacing: 30 })(
+                Views.TextInput()
+                    .label('*App ID').placeholder('Enter ID')
+                    .formField('app_id', [new RequiredRule('App ID must be set')]),
+                Views.TextInput()
+                    .label('*App Secret').placeholder('Enter App Secret')
+                    .formField('app_secret', [new RequiredRule('App Secret must be set')]),
+                Infobox('To complete set up, add this OAuth2 redirect URI to your Autodesk app configuration.')
+                    .fontSize(16).fontFamily('"Inter", arial, sans-serif')
+            ).height()
+        )  },
     {
         name: 'Bitbucket',
         icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMuNTg0MTYgMy4wMDAwNUMzLjQ5OTk4IDIuOTk4ODUgMy40MTY1OSAzLjAxODA4IDMuMzM5ODQgMy4wNTYzOUMzLjI2MzA4IDMuMDk0NzEgMy4xOTQ4MyAzLjE1MTE4IDMuMTM5ODcgMy4yMjE4NEMzLjA4NDkxIDMuMjkyNSAzLjA0NDU4IDMuMzc1NjQgMy4wMjE3IDMuNDY1NDFDMi45OTg4MiAzLjU1NTE5IDIuOTkzOTYgMy42NDk0MyAzLjAwNzQ2IDMuNzQxNTFMNS40NTU2NiAyMC4yMTFDNS40ODYxNiAyMC40MTI1IDUuNTc5NzYgMjAuNTk1NyA1LjcyMDA0IDIwLjcyODRDNS44NjAzMSAyMC44NjEgNi4wMzgyOSAyMC45MzQ3IDYuMjIyNyAyMC45MzY0SDE3Ljk2NzdDMTguMTA1OSAyMC45MzgzIDE4LjI0MDEgMjAuODg1MiAxOC4zNDYgMjAuNzg2N0MxOC40NTE4IDIwLjY4ODEgMTguNTIyMiAyMC41NTA3IDE4LjU0NDMgMjAuMzk5NUwyMC45OTI2IDMuNzQ0N0MyMS4wMDYgMy42NTI2MyAyMS4wMDEyIDMuNTU4NCAyMC45NzgzIDMuNDY4NjRDMjAuOTU1NCAzLjM3ODg4IDIwLjkxNSAzLjI5NTc1IDIwLjg2MDEgMy4yMjUxMUMyMC44MDUxIDMuMTU0NDYgMjAuNzM2OCAzLjA5ODAxIDIwLjY2MDEgMy4wNTk3MUMyMC41ODMzIDMuMDIxNDEgMjAuNSAzLjAwMjE5IDIwLjQxNTggMy4wMDM0TDMuNTg0MTYgMy4wMDAwNVpNMTMuODkzMSAxNC45MDMySDEwLjE0NDRMOS4xMjkzNCA5LjAyNjc0SDE0LjgwMTRMMTMuODkzMSAxNC45MDMyWiIgZmlsbD0iIzI2ODRGRiIvPgo8cGF0aCBkPSJNMjAuMTk4MyA5LjAxODMxSDE0Ljc5MDJMMTMuODgyNSAxNC44OTAxSDEwLjEzNjlMNS43MTQxMSAyMC43MDc2QzUuODU0MjkgMjAuODQxOSA2LjAzMzAxIDIwLjkxNjYgNi4yMTgzMiAyMC45MTgzSDE3Ljk1NjhDMTguMDk0OSAyMC45MjAzIDE4LjIyOTEgMjAuODY3MiAxOC4zMzQ4IDIwLjc2ODdDMTguNDQwNiAyMC42NzAzIDE4LjUxMDkgMjAuNTMzIDE4LjUzMyAyMC4zODE5TDIwLjE5ODMgOS4wMTgzMVoiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl81MzZfOTIyMikiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl81MzZfOTIyMiIgeDE9IjIxLjQ0ODciIHkxPSIxMC42NjI3IiB4Mj0iMTQuMzE2MyIgeTI9IjE5LjgwMTUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agb2Zmc2V0PSIwLjE4IiBzdG9wLWNvbG9yPSIjMDA1MkNDIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzI2ODRGRiIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo='

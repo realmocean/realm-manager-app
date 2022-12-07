@@ -9,7 +9,7 @@ const menuModel = [
         subItems: [
             {
                 name: 'Overview',
-                icon: IconLibrary.Dashboard,
+                icon: "\\fa2f",
                 link: '/app(realmmanager)/dashboard'
 
             }
@@ -26,7 +26,7 @@ const menuModel = [
             },
             {
                 name: 'Accounts',
-                icon: '\\e853',
+                icon: '\\fb14',
                 link: '/app(realmmanager)/account/list'
             },
             /*   {
@@ -129,7 +129,7 @@ export const LeftSideMenuView = (realmName: string, selectedItem: string) => (
                 Text(menu.title).fontWeight('600')
                     .fontSize('0.75rem').lineHeight('0.8rem')
                     .kerning('.06rem').fontFamily(fontFamily)
-                    .padding('25px 10px 15px')
+                    .padding('15px 10px 5px')
                     .textTransform('uppercase')
                     .foregroundColor('rgb(166,161,167)'),
 
@@ -137,7 +137,7 @@ export const LeftSideMenuView = (realmName: string, selectedItem: string) => (
                     HStack(
                         UIRouteLink(subItem.link ?? '')(
                             HStack({ alignment: cLeading, spacing: 10 })(
-                                Icon(subItem.icon).size(25).foregroundColor('rgb(197,199,216)'),
+                                Icon(subItem.icon).size(18).foregroundColor('rgb(197,199,216)'),
                                 Text(subItem.name).fontSize(14).lineHeight('24px')
                             )
                                 .cornerRadius(CornerRadiusTypes.Rounded)
@@ -153,8 +153,8 @@ export const LeftSideMenuView = (realmName: string, selectedItem: string) => (
 
                 )
             ).height()
-                .borderBottom('1px solid rgba(180,188,199,.32)')
-                .paddingBottom('20px')
+                /* .borderBottom('1px solid rgba(180,188,199,.32)')
+                .paddingBottom('20px') */
         )
     )
         .background(Color.white)
